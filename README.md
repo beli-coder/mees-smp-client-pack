@@ -26,13 +26,33 @@ python3 scripts/modpack.py build --profile lite
 
 Output: `dist/Mees-SMP-Client-0.3.0.mrpack` (Technical) and `dist/Mees-SMP-Lite-0.3.0.mrpack` (Lite). Tests: `python3 -m unittest discover -s tests -v`.
 
-## Modrinth publishing
+## Modrinth publishing — one project, two editions
 
-Keep **separate Modrinth projects** for Lite and Technical so launcher updates don't accidentally switch editions. Your existing `mees-modpack` is the Technical project. Create a second Modrinth modpack project for Lite, then set repository variable `MODRINTH_LITE_PROJECT_SLUG` to its slug.
+Both editions are published as **different versions on the SAME Modrinth project**:
+[mees-modpack](https://modrinth.com/project/mees-modpack).
 
-GitHub repository secret `API_TOKEN_MODRINTH` needs Modrinth scopes PROJECT_READ, VERSION_READ, VERSION_CREATE and project access. In Actions → Build Mees SMP Client Pack → Run workflow, check **Publish the Technical pack** and/or **Publish the Lite pack**. Auto publishing on future release tags is opt-in by setting repository variable `MODRINTH_AUTO_PUBLISH` to `true` only after permissions and both projects are verified.
+- **Lite:** `0.3.0-lite` — `Mees SMP Lite 0.3.0` (13 resolved mods)
+- **Technical:** `0.3.0-technical` — `Mees SMP Technical 0.3.0` (38 resolved mods)
 
-The GitHub build always creates both packs; it doesn't need a Modrinth token. A version tag creates a GitHub Release containing **both** `.mrpack` files. Do not tag a release before the lockfile-refresh build has committed both lockfiles and you have launch-tested Lite.
+Players select the edition under **Versions** on the project page.
+For future releases the version numbers are always `<manifest-version>-lite` and
+`<manifest-version>-technical` (for example `0.3.1-lite`).
+GitHub maintains independent pinned lockfiles and outputs.
+
+**Important:** These are two *variants*, not isolated automatic-update branches.
+Modrinth's standard API has release/beta/alpha channels but no Lite/Technical
+update track. The Modrinth App may offer a newer version from the other variant
+when both share one project. Players should verify the edition name when
+updating. If isolated automatic updates become essential, two projects are needed.
+
+Use the repository secret `API_TOKEN_MODRINTH` with scopes
+`PROJECT_READ`, `VERSION_READ`, and `VERSION_CREATE`. The token's owner
+must also have access to `mees-modpack` (draft/private projects may 404).
+Open GitHub **Actions → Build Mees SMP Client Pack → Run workflow** on main,
+and select **Upload Technical edition** and **Upload Lite edition** to
+publish either or both. Automatic tag publishing remains opt-in behind
+the repository variable `MODRINTH_AUTO_PUBLISH=true`.
+
 
 ---
 # Legacy Technical Edition Details

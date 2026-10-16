@@ -6,12 +6,12 @@ on:
   workflow_dispatch:
     inputs:
       publish_modrinth:
-        description: 'Publish the Technical pack to Modrinth'
+        description: 'Upload Technical edition to the same Modrinth project'
         type: boolean
         required: false
         default: false
       publish_lite:
-        description: 'Publish the Lite pack to its separate Modrinth project'
+        description: 'Upload Lite edition to the same Modrinth project'
         type: boolean
         required: false
         default: false
@@ -88,7 +88,7 @@ jobs:
         env:
           GH_TOKEN: ${{ github.token }}
         run: gh release create "$GITHUB_REF_NAME" dist/*.mrpack --generate-notes --title "Mees SMP Client $GITHUB_REF_NAME"
-      - name: Publish Technical pack to Modrinth
+      - name: Publish Technical edition on mees-modpack
         if: (startsWith(github.ref, 'refs/tags/v') && vars.MODRINTH_AUTO_PUBLISH == 'true') || (github.event_name == 'workflow_dispatch' && inputs.publish_modrinth)
         env:
           MODRINTH_TOKEN: ${{ secrets.API_TOKEN_MODRINTH }}
@@ -106,6 +106,7 @@ jobs:
           pack="dist/Mees-SMP-Client-${v}.mrpack"
           test -s "$pack"
           digest=$(sha512sum "$pack" | cut -d' ' -f1)
+          release_version="${v}-technical"
           # Draft projects are deliberately invisible to tokens lacking
           # PROJECT_READ. VERSION_READ is also required to check draft versions.
           api_get() {
@@ -132,15 +133,15 @@ jobs:
           project_id=$(jq -er 'select(.project_type == "modpack") | .id' <<< "$project")
           echo "Verified accessible Modrinth modpack project: $project_id"
           versions=$(api_get "$API/project/$project_id/version" "Modrinth version list")
-          if jq -e --arg v "$v" '[.[] | select(.version_number == $v)] | length > 0' >/dev/null <<< "$versions"; then
-            if jq -e --arg v "$v" --arg digest "$digest" '[.[] | select(.version_number == $v) | .files[]? | select(.hashes.sha512 == $digest)] | length > 0' >/dev/null <<< "$versions"; then
-              echo "Modrinth version $v already contains this exact pack; no duplicate created."
+          if jq -e --arg v "$release_version" '[.[] | select(.version_number == $v)] | length > 0' >/dev/null <<< "$versions"; then
+            if jq -e --arg v "$release_version" --arg digest "$digest" '[.[] | select(.version_number == $v) | .files[]? | select(.hashes.sha512 == $digest)] | length > 0' >/dev/null <<< "$versions"; then
+              echo "Modrinth version $release_version already contains this exact pack; no duplicate created."
               exit 0
             fi
-            echo "::error::Modrinth version $v already exists with different file hashes; bump the manifest version to release an update."
+            echo "::error::Modrinth version $release_version already exists with different file hashes; bump the manifest version to release an update."
             exit 1
           fi
-          payload=$(jq -cn --arg pid "$project_id" --arg v "$v" --arg mc "$mc" '{
+          payload=$(jq -cn --arg pid "$project_id" --arg v "$release_version" --arg mc "$mc" '{
             project_id: $pid,
             name: ("Mees SMP Technical " + $v),
             version_number: $v,
@@ -161,20 +162,15 @@ jobs:
             -F "file=@$pack;type=application/octet-stream" \
             "$API/version")
           jq -er '"Published Modrinth version ID: " + .id' <<< "$response"
-      - name: Publish Lite pack to Modrinth
-        if: (startsWith(github.ref, 'refs/tags/v') && vars.MODRINTH_AUTO_PUBLISH == 'true' && vars.MODRINTH_LITE_PROJECT_SLUG != '') || (github.event_name == 'workflow_dispatch' && inputs.publish_lite)
+      - name: Publish Lite edition on mees-modpack
+        if: (startsWith(github.ref, 'refs/tags/v') && vars.MODRINTH_AUTO_PUBLISH == 'true') || (github.event_name == 'workflow_dispatch' && inputs.publish_lite)
         env:
           MODRINTH_TOKEN: ${{ secrets.API_TOKEN_MODRINTH }}
-          LITE_PROJECT: ${{ vars.MODRINTH_LITE_PROJECT_SLUG }}
         shell: bash
         run: |
           set -euo pipefail
           if [[ -z "${MODRINTH_TOKEN:-}" ]]; then
             echo "::error::Missing API_TOKEN_MODRINTH GitHub secret. Add a Modrinth PAT with PROJECT_READ, VERSION_READ, VERSION_CREATE permissions in repository Actions secrets."
-            exit 1
-          fi
-          if [[ -z "${LITE_PROJECT:-}" ]]; then
-            echo "::error::Set MODRINTH_LITE_PROJECT_SLUG repository variable to the slug of your second Modrinth project."
             exit 1
           fi
           API='https://api.modrinth.com/v2'
@@ -184,6 +180,7 @@ jobs:
           pack="dist/Mees-SMP-Lite-${v}.mrpack"
           test -s "$pack"
           digest=$(sha512sum "$pack" | cut -d' ' -f1)
+          release_version="${v}-lite"
           # Draft projects are deliberately invisible to tokens lacking
           # PROJECT_READ. VERSION_READ is also required to check draft versions.
           api_get() {
@@ -195,7 +192,7 @@ jobs:
             if [[ "$status" != "200" ]]; then
               echo "::error::$label lookup returned HTTP $status." >&2
               if [[ "$status" == "404" ]]; then
-                echo "::error::If $LITE_PROJECT is a draft/private project, your API_TOKEN_MODRINTH token must have PROJECT_READ and VERSION_READ as well as VERSION_CREATE, and belong to an account with project access. Also verify the project slug." >&2
+                echo "::error::If mees-modpack is a draft/private project, your API_TOKEN_MODRINTH token must have PROJECT_READ and VERSION_READ as well as VERSION_CREATE, and belong to an account with project access. Also verify the project slug." >&2
               elif [[ "$status" == "401" || "$status" == "403" ]]; then
                 echo "::error::Check Modrinth token permissions and account membership." >&2
               fi
@@ -206,23 +203,23 @@ jobs:
             cat "$body"
             rm -f "$body"
           }
-          project=$(api_get "$API/project/$LITE_PROJECT" "Modrinth project")
+          project=$(api_get "$API/project/mees-modpack" "Modrinth project")
           project_id=$(jq -er 'select(.project_type == "modpack") | .id' <<< "$project")
           echo "Verified accessible Modrinth modpack project: $project_id"
           versions=$(api_get "$API/project/$project_id/version" "Modrinth version list")
-          if jq -e --arg v "$v" '[.[] | select(.version_number == $v)] | length > 0' >/dev/null <<< "$versions"; then
-            if jq -e --arg v "$v" --arg digest "$digest" '[.[] | select(.version_number == $v) | .files[]? | select(.hashes.sha512 == $digest)] | length > 0' >/dev/null <<< "$versions"; then
-              echo "Modrinth version $v already contains this exact pack; no duplicate created."
+          if jq -e --arg v "$release_version" '[.[] | select(.version_number == $v)] | length > 0' >/dev/null <<< "$versions"; then
+            if jq -e --arg v "$release_version" --arg digest "$digest" '[.[] | select(.version_number == $v) | .files[]? | select(.hashes.sha512 == $digest)] | length > 0' >/dev/null <<< "$versions"; then
+              echo "Modrinth version $release_version already contains this exact pack; no duplicate created."
               exit 0
             fi
-            echo "::error::Modrinth version $v already exists with different file hashes; bump the manifest version to release an update."
+            echo "::error::Modrinth version $release_version already exists with different file hashes; bump the manifest version to release an update."
             exit 1
           fi
-          payload=$(jq -cn --arg pid "$project_id" --arg v "$v" --arg mc "$mc" '{
+          payload=$(jq -cn --arg pid "$project_id" --arg v "$release_version" --arg mc "$mc" '{
             project_id: $pid,
             name: ("Mees SMP Lite " + $v),
             version_number: $v,
-            changelog: ("Official Mees SMP Lite client modpack " + $v + ". Includes performance, shaders, Distant Horizons, mapping, voice chat, inventory QoL, and building tools."),
+            changelog: ("Official Mees SMP Lite client modpack " + $v + ". Includes Sodium, Iris, maps, voice chat, and simple QoL enhancements."),
             dependencies: [],
             game_versions: [$mc],
             version_type: "release",
