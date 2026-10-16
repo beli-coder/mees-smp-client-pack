@@ -80,12 +80,12 @@ jobs:
       - name: Publish tested pack to Modrinth
         if: startsWith(github.ref, 'refs/tags/v') || (github.event_name == 'workflow_dispatch' && inputs.publish_modrinth)
         env:
-          MODRINTH_TOKEN: ${{ secrets.MODRINTH_TOKEN }}
+          MODRINTH_TOKEN: ${{ secrets.API_TOKEN_MODRINTH }}
         shell: bash
         run: |
           set -euo pipefail
           if [[ -z "${MODRINTH_TOKEN:-}" ]]; then
-            echo "::error::Missing MODRINTH_TOKEN. Add a Modrinth PAT with VERSION_CREATE permission in repository Actions secrets."
+            echo "::error::Missing API_TOKEN_MODRINTH GitHub secret. Add a Modrinth PAT with VERSION_CREATE permission in repository Actions secrets."
             exit 1
           fi
           API='https://api.modrinth.com/v2'
