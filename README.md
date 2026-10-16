@@ -114,7 +114,7 @@ Project sources and documentation: [Modrinth `.mrpack` format](https://support.m
 
 The pack is published at [Mees Modpack](https://modrinth.com/project/mees-modpack). Install or update it through the Modrinth App after the Modrinth project and its version have been approved.
 
-The GitHub Actions workflow can upload pinned .mrpack builds directly to this project. Create a **Modrinth personal access token** with the **Create versions (VERSION_CREATE)** scope and membership permission to publish versions of `mees-modpack`. Save the token in this GitHub repository under **Settings → Secrets and variables → Actions → New repository secret**, name `MODRINTH_TOKEN`. Never commit the token or paste it in chat.
+The GitHub Actions workflow can upload pinned .mrpack builds directly to this project. Create a **Modrinth personal access token** with **Read projects (PROJECT_READ)**, **Read versions (VERSION_READ)**, and **Create versions (VERSION_CREATE)** scopes and membership permission to publish versions of `mees-modpack`. These read scopes matter if the project is still a private/draft project. Save the token in this GitHub repository under **Settings → Secrets and variables → Actions → New repository secret**, name `API_TOKEN_MODRINTH`. Never commit the token or paste it in chat.
 
 To publish the existing 0.2.2 version (whose tag predates this workflow change):
 1. Open **Actions → Build Mees SMP Client Pack → Run workflow** in GitHub.
