@@ -95,9 +95,9 @@ jobs:
           pack="dist/Mees-SMP-Client-${v}.mrpack"
           test -s "$pack"
           digest=$(sha512sum "$pack" | cut -d' ' -f1)
-          project=$(curl --fail-with-body -fsS -H "Authorization: $MODRINTH_TOKEN" -H "User-Agent: $AGENT" "$API/project/mees-modpack")
+          project=$(curl --fail-with-body -sS -H "Authorization: $MODRINTH_TOKEN" -H "User-Agent: $AGENT" "$API/project/mees-modpack")
           project_id=$(jq -er 'select(.project_type == "modpack") | .id' <<< "$project")
-          versions=$(curl --fail-with-body -fsS -H "Authorization: $MODRINTH_TOKEN" -H "User-Agent: $AGENT" "$API/project/$project_id/version")
+          versions=$(curl --fail-with-body -sS -H "Authorization: $MODRINTH_TOKEN" -H "User-Agent: $AGENT" "$API/project/$project_id/version")
           if jq -e --arg v "$v" '[.[] | select(.version_number == $v)] | length > 0' >/dev/null <<< "$versions"; then
             if jq -e --arg v "$v" --arg digest "$digest" '[.[] | select(.version_number == $v) | .files[]? | select(.hashes.sha512 == $digest)] | length > 0' >/dev/null <<< "$versions"; then
               echo "Modrinth version $v already contains this exact pack; no duplicate created."
@@ -118,7 +118,7 @@ jobs:
             file_parts: ["file"],
             primary_file: "file"
           }')
-          response=$(curl --fail-with-body -fsS -X POST \
+          response=$(curl --fail-with-body -sS -X POST \
             -H "Authorization: $MODRINTH_TOKEN" \
             -H "User-Agent: $AGENT" \
             -F "data=$payload" \
