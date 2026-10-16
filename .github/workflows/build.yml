@@ -4,6 +4,12 @@ on:
     branches: [main]
     tags: ['v*']
   workflow_dispatch:
+    inputs:
+      publish_modrinth:
+        description: 'Publish the tested pack to Modrinth (requires MODRINTH_TOKEN)'
+        type: boolean
+        required: false
+        default: false
 permissions:
   contents: write  # needed for tag-triggered GitHub Releases
 jobs:
@@ -68,6 +74,57 @@ jobs:
           name: mees-smp-client
           path: dist/*.mrpack
           if-no-files-found: error
+      # Existing v0.2.2 tag was already created before Modrinth integration.
+      # Run workflow_dispatch on main with publish_modrinth=true for first upload.
+      # Future new v* tags publish automatically from the pinned lockfile.
+      - name: Publish tested pack to Modrinth
+        if: startsWith(github.ref, 'refs/tags/v') || (github.event_name == 'workflow_dispatch' && inputs.publish_modrinth)
+        env:
+          MODRINTH_TOKEN: ${{ secrets.MODRINTH_TOKEN }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          if [[ -z "${MODRINTH_TOKEN:-}" ]]; then
+            echo "::error::Missing MODRINTH_TOKEN. Add a Modrinth PAT with VERSION_CREATE permission in repository Actions secrets."
+            exit 1
+          fi
+          API='https://api.modrinth.com/v2'
+          AGENT='beli-coder/mees-smp-client-pack/1.0 (https://github.com/beli-coder/mees-smp-client-pack)'
+          v=$(jq -er '.version' manifest.json)
+          mc=$(jq -er '.minecraft' manifest.json)
+          pack="dist/Mees-SMP-Client-${v}.mrpack"
+          test -s "$pack"
+          digest=$(sha512sum "$pack" | cut -d' ' -f1)
+          project=$(curl --fail-with-body -fsS -H "Authorization: $MODRINTH_TOKEN" -H "User-Agent: $AGENT" "$API/project/mees-modpack")
+          project_id=$(jq -er 'select(.project_type == "modpack") | .id' <<< "$project")
+          versions=$(curl --fail-with-body -fsS -H "Authorization: $MODRINTH_TOKEN" -H "User-Agent: $AGENT" "$API/project/$project_id/version")
+          if jq -e --arg v "$v" '[.[] | select(.version_number == $v)] | length > 0' >/dev/null <<< "$versions"; then
+            if jq -e --arg v "$v" --arg digest "$digest" '[.[] | select(.version_number == $v) | .files[]? | select(.hashes.sha512 == $digest)] | length > 0' >/dev/null <<< "$versions"; then
+              echo "Modrinth version $v already contains this exact pack; no duplicate created."
+              exit 0
+            fi
+            echo "::error::Modrinth version $v already exists with different file hashes; bump the manifest version to release an update."
+            exit 1
+          fi
+          payload=$(jq -cn --arg pid "$project_id" --arg v "$v" --arg mc "$mc" '{
+            project_id: $pid,
+            name: ("Mees SMP Client " + $v),
+            version_number: $v,
+            changelog: ("Official Mees SMP deluxe client modpack " + $v + ". Includes performance, shaders, Distant Horizons, mapping, voice chat, inventory QoL, and building tools."),
+            dependencies: [],
+            game_versions: [$mc],
+            version_type: "release",
+            loaders: ["fabric"],
+            file_parts: ["file"],
+            primary_file: "file"
+          }')
+          response=$(curl --fail-with-body -fsS -X POST \
+            -H "Authorization: $MODRINTH_TOKEN" \
+            -H "User-Agent: $AGENT" \
+            -F "data=$payload" \
+            -F "file=@$pack;type=application/octet-stream" \
+            "$API/version")
+          jq -er '"Published Modrinth version ID: " + .id' <<< "$response"
       - name: Publish tagged pack to GitHub Releases
         if: startsWith(github.ref, 'refs/tags/v')
         env:
