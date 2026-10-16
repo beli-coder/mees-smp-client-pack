@@ -1,4 +1,41 @@
-# Mees SMP Client Pack — Deluxe (v0.2.2)
+# Mees SMP — Lite and Technical packs (v0.3.0)
+
+**Minecraft Java 26.3 · Fabric Loader 0.19.5 · OPTIONAL client packs.**
+
+Both variants connect to `mees.clayton.engineer`. Vanilla Java and Bedrock remain supported on the unchanged server. The public map is https://map.clayton.engineer.
+
+## Choose an edition
+
+| | **Lite** | **Technical** |
+|---|---|---|
+| Intended for | People who want a familiar Minecraft experience | Builders, redstone engineers and people who love detailed HUDs |
+| Includes | Sodium, Iris, rendering fixes, Mouse Tweaks, AppleSkin, shulker previews, Xaero maps, voice chat, Mod Menu | Everything in Lite **plus** Distant Horizons, Litematica, MiniHUD, advanced inventory sorting, JEI, Jade, extra visual/HUD mods |
+| Installation required to join? | **No** | **No** |
+| Server version | Java 26.3 / Fabric 0.19.5 | Java 26.3 / Fabric 0.19.5 |
+
+There are two independent manifests with pinned lockfiles:
+- Technical: `manifest.json` + `pack.lock.json`.
+- Lite: `profiles/lite/manifest.json` + `profiles/lite/pack.lock.json`.
+
+```bash
+python3 scripts/modpack.py lock --profile technical
+python3 scripts/modpack.py lock --profile lite
+python3 scripts/modpack.py build --profile technical
+python3 scripts/modpack.py build --profile lite
+```
+
+Output: `dist/Mees-SMP-Client-0.3.0.mrpack` (Technical) and `dist/Mees-SMP-Lite-0.3.0.mrpack` (Lite). Tests: `python3 -m unittest discover -s tests -v`.
+
+## Modrinth publishing
+
+Keep **separate Modrinth projects** for Lite and Technical so launcher updates don't accidentally switch editions. Your existing `mees-modpack` is the Technical project. Create a second Modrinth modpack project for Lite, then set repository variable `MODRINTH_LITE_PROJECT_SLUG` to its slug.
+
+GitHub repository secret `API_TOKEN_MODRINTH` needs Modrinth scopes PROJECT_READ, VERSION_READ, VERSION_CREATE and project access. In Actions → Build Mees SMP Client Pack → Run workflow, check **Publish the Technical pack** and/or **Publish the Lite pack**. Auto publishing on future release tags is opt-in by setting repository variable `MODRINTH_AUTO_PUBLISH` to `true` only after permissions and both projects are verified.
+
+The GitHub build always creates both packs; it doesn't need a Modrinth token. A version tag creates a GitHub Release containing **both** `.mrpack` files. Do not tag a release before the lockfile-refresh build has committed both lockfiles and you have launch-tested Lite.
+
+---
+# Legacy Technical Edition Details
 
 **Minecraft Java 26.3 · Fabric Loader 0.19.5 · optional, client-side**
 

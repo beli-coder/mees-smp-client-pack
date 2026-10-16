@@ -6,7 +6,12 @@ on:
   workflow_dispatch:
     inputs:
       publish_modrinth:
-        description: 'Publish the tested pack to Modrinth (requires MODRINTH_TOKEN)'
+        description: 'Publish the Technical pack to Modrinth'
+        type: boolean
+        required: false
+        default: false
+      publish_lite:
+        description: 'Publish the Lite pack to its separate Modrinth project'
         type: boolean
         required: false
         default: false
@@ -22,37 +27,37 @@ jobs:
           python-version: '3.11'
       - name: Test pack build and dependency resolution
         run: python -m unittest discover -s tests -v
-      # On main, refresh only when the manifest changed. The bot commits
-      # the resulting lockfile; tagged releases always use pinned dependencies.
-      - name: Refresh lockfile when manifest changed
+      # Both profiles maintain their own pinned dependencies.
+      - name: Refresh changed profile lockfiles on main
         if: github.ref == 'refs/heads/main'
         run: |
           python - <<'PY'
           import hashlib, json, subprocess, sys
           from pathlib import Path
-          mp, lp = Path("manifest.json"), Path("pack.lock.json")
-          manifest = json.loads(mp.read_text())
-          try:
-              lock = json.loads(lp.read_text())
-              stale = (lock.get("manifest_sha256") != hashlib.sha256(mp.read_bytes()).hexdigest()
-                       or any(lock.get(k) != manifest.get(k) for k in
-                              ("version", "minecraft", "fabric_loader", "name")))
-          except (FileNotFoundError, ValueError):
-              stale = True
-          if stale:
-              print("Manifest and lock differ; resolving pinned client mods", flush=True)
-              subprocess.run([sys.executable, "scripts/modpack.py", "lock"], check=True)
-          else:
-              print("Lockfile matches manifest; no re-resolution needed.")
+          for profile, directory in (('technical', Path('.')), ('lite', Path('profiles/lite'))):
+              mp, lp = directory/'manifest.json', directory/'pack.lock.json'
+              manifest = json.loads(mp.read_text())
+              try:
+                  lock = json.loads(lp.read_text())
+                  stale = (lock.get('manifest_sha256') != hashlib.sha256(mp.read_bytes()).hexdigest()
+                           or any(lock.get(k) != manifest.get(k) for k in
+                                  ('version', 'minecraft', 'fabric_loader', 'name')))
+              except (FileNotFoundError, ValueError):
+                  stale = True
+              if stale:
+                  print(f'Refreshing {profile} dependencies', flush=True)
+                  subprocess.run([sys.executable, 'scripts/modpack.py', 'lock', '--profile', profile], check=True)
+              else:
+                  print(f'{profile} lockfile current')
           PY
-      - name: Commit refreshed lockfile on main
+      - name: Commit refreshed lockfiles on main
         if: github.ref == 'refs/heads/main'
         run: |
-          if ! git diff --quiet -- pack.lock.json; then
+          if ! git diff --quiet -- pack.lock.json profiles/lite/pack.lock.json; then
             git config user.name 'github-actions[bot]'
             git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-            git add pack.lock.json
-            git commit -m 'chore: pin updated client dependencies [skip ci]'
+            git add pack.lock.json profiles/lite/pack.lock.json
+            git commit -m 'chore: pin Lite and Technical client dependencies [skip ci]'
             git push origin HEAD:main
           fi
       - name: Check release tag matches manifest version
@@ -63,22 +68,28 @@ jobs:
           python - <<'PY'
           import json, os
           from pathlib import Path
-          version = json.loads(Path('manifest.json').read_text())['version']
-          assert os.environ['GIT_REF'] == 'v' + version, 'Git tag must match manifest version'
+          versions = [json.loads(Path(p).read_text())['version'] for p in
+                      ('manifest.json', 'profiles/lite/manifest.json')]
+          assert len(set(versions)) == 1, 'Lite and Technical pack versions must match'
+          assert os.environ['GIT_REF'] == 'v' + versions[0], 'Git tag must match both manifests'
           PY
-      - name: Build from committed lockfile (no network resolution)
-        run: python scripts/modpack.py build
+      - name: Build both pinned packs (no network resolution)
+        run: |
+          python scripts/modpack.py build --profile technical
+          python scripts/modpack.py build --profile lite
       - name: Upload installable Modrinth pack
         uses: actions/upload-artifact@v6
         with:
-          name: mees-smp-client
+          name: mees-smp-client-packs
           path: dist/*.mrpack
           if-no-files-found: error
-      # Existing v0.2.2 tag was already created before Modrinth integration.
-      # Run workflow_dispatch on main with publish_modrinth=true for first upload.
-      # Future new v* tags publish automatically from the pinned lockfile.
-      - name: Publish tested pack to Modrinth
-        if: startsWith(github.ref, 'refs/tags/v') || (github.event_name == 'workflow_dispatch' && inputs.publish_modrinth)
+      - name: Publish tagged pack to GitHub Releases
+        if: startsWith(github.ref, 'refs/tags/v')
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh release create "$GITHUB_REF_NAME" dist/*.mrpack --generate-notes --title "Mees SMP Client $GITHUB_REF_NAME"
+      - name: Publish Technical pack to Modrinth
+        if: (startsWith(github.ref, 'refs/tags/v') && vars.MODRINTH_AUTO_PUBLISH == 'true') || (github.event_name == 'workflow_dispatch' && inputs.publish_modrinth)
         env:
           MODRINTH_TOKEN: ${{ secrets.API_TOKEN_MODRINTH }}
         shell: bash
@@ -131,9 +142,9 @@ jobs:
           fi
           payload=$(jq -cn --arg pid "$project_id" --arg v "$v" --arg mc "$mc" '{
             project_id: $pid,
-            name: ("Mees SMP Client " + $v),
+            name: ("Mees SMP Technical " + $v),
             version_number: $v,
-            changelog: ("Official Mees SMP deluxe client modpack " + $v + ". Includes performance, shaders, Distant Horizons, mapping, voice chat, inventory QoL, and building tools."),
+            changelog: ("Official Mees SMP Technical client modpack " + $v + ". Includes performance, shaders, Distant Horizons, mapping, voice chat, inventory QoL, and building tools."),
             dependencies: [],
             game_versions: [$mc],
             version_type: "release",
@@ -150,8 +161,81 @@ jobs:
             -F "file=@$pack;type=application/octet-stream" \
             "$API/version")
           jq -er '"Published Modrinth version ID: " + .id' <<< "$response"
-      - name: Publish tagged pack to GitHub Releases
-        if: startsWith(github.ref, 'refs/tags/v')
+      - name: Publish Lite pack to Modrinth
+        if: (startsWith(github.ref, 'refs/tags/v') && vars.MODRINTH_AUTO_PUBLISH == 'true' && vars.MODRINTH_LITE_PROJECT_SLUG != '') || (github.event_name == 'workflow_dispatch' && inputs.publish_lite)
         env:
-          GH_TOKEN: ${{ github.token }}
-        run: gh release create "$GITHUB_REF_NAME" dist/*.mrpack --generate-notes --title "Mees SMP Client $GITHUB_REF_NAME"
+          MODRINTH_TOKEN: ${{ secrets.API_TOKEN_MODRINTH }}
+          LITE_PROJECT: ${{ vars.MODRINTH_LITE_PROJECT_SLUG }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          if [[ -z "${MODRINTH_TOKEN:-}" ]]; then
+            echo "::error::Missing API_TOKEN_MODRINTH GitHub secret. Add a Modrinth PAT with PROJECT_READ, VERSION_READ, VERSION_CREATE permissions in repository Actions secrets."
+            exit 1
+          fi
+          if [[ -z "${LITE_PROJECT:-}" ]]; then
+            echo "::error::Set MODRINTH_LITE_PROJECT_SLUG repository variable to the slug of your second Modrinth project."
+            exit 1
+          fi
+          API='https://api.modrinth.com/v2'
+          AGENT='beli-coder/mees-smp-client-pack/1.0 (https://github.com/beli-coder/mees-smp-client-pack)'
+          v=$(jq -er '.version' profiles/lite/manifest.json)
+          mc=$(jq -er '.minecraft' profiles/lite/manifest.json)
+          pack="dist/Mees-SMP-Lite-${v}.mrpack"
+          test -s "$pack"
+          digest=$(sha512sum "$pack" | cut -d' ' -f1)
+          # Draft projects are deliberately invisible to tokens lacking
+          # PROJECT_READ. VERSION_READ is also required to check draft versions.
+          api_get() {
+            local url="$1" label="$2" body status
+            body=$(mktemp)
+            status=$(curl -sS -o "$body" -w '%{http_code}' \
+              -H "Authorization: $MODRINTH_TOKEN" -H "User-Agent: $AGENT" \
+              "$url") || { rm -f "$body"; echo "::error::Network error while reading $label" >&2; return 1; }
+            if [[ "$status" != "200" ]]; then
+              echo "::error::$label lookup returned HTTP $status." >&2
+              if [[ "$status" == "404" ]]; then
+                echo "::error::If $LITE_PROJECT is a draft/private project, your API_TOKEN_MODRINTH token must have PROJECT_READ and VERSION_READ as well as VERSION_CREATE, and belong to an account with project access. Also verify the project slug." >&2
+              elif [[ "$status" == "401" || "$status" == "403" ]]; then
+                echo "::error::Check Modrinth token permissions and account membership." >&2
+              fi
+              jq -r '.description // .error // empty' < "$body" 2>/dev/null >&2 || true
+              rm -f "$body"
+              return 1
+            fi
+            cat "$body"
+            rm -f "$body"
+          }
+          project=$(api_get "$API/project/$LITE_PROJECT" "Modrinth project")
+          project_id=$(jq -er 'select(.project_type == "modpack") | .id' <<< "$project")
+          echo "Verified accessible Modrinth modpack project: $project_id"
+          versions=$(api_get "$API/project/$project_id/version" "Modrinth version list")
+          if jq -e --arg v "$v" '[.[] | select(.version_number == $v)] | length > 0' >/dev/null <<< "$versions"; then
+            if jq -e --arg v "$v" --arg digest "$digest" '[.[] | select(.version_number == $v) | .files[]? | select(.hashes.sha512 == $digest)] | length > 0' >/dev/null <<< "$versions"; then
+              echo "Modrinth version $v already contains this exact pack; no duplicate created."
+              exit 0
+            fi
+            echo "::error::Modrinth version $v already exists with different file hashes; bump the manifest version to release an update."
+            exit 1
+          fi
+          payload=$(jq -cn --arg pid "$project_id" --arg v "$v" --arg mc "$mc" '{
+            project_id: $pid,
+            name: ("Mees SMP Lite " + $v),
+            version_number: $v,
+            changelog: ("Official Mees SMP Lite client modpack " + $v + ". Includes performance, shaders, Distant Horizons, mapping, voice chat, inventory QoL, and building tools."),
+            dependencies: [],
+            game_versions: [$mc],
+            version_type: "release",
+            featured: false,
+            environment: "client_only",
+            loaders: ["fabric"],
+            file_parts: ["file"],
+            primary_file: "file"
+          }')
+          response=$(curl --fail-with-body -sS -X POST \
+            -H "Authorization: $MODRINTH_TOKEN" \
+            -H "User-Agent: $AGENT" \
+            -F "data=$payload" \
+            -F "file=@$pack;type=application/octet-stream" \
+            "$API/version")
+          jq -er '"Published Modrinth version ID: " + .id' <<< "$response"

@@ -24,6 +24,19 @@ LOCK = ROOT / "pack.lock.json"
 API = "https://api.modrinth.com/v2"
 ALLOWED_HOSTS = {"cdn.modrinth.com", "github.com", "raw.githubusercontent.com", "gitlab.com"}
 
+PROFILE = "technical"
+
+def set_profile(name):
+    """Select one of the independent manifests and lockfiles."""
+    global PROFILE, MANIFEST, LOCK
+    if name not in ("technical", "lite"):
+        raise ValueError(f"Unknown profile: {name}")
+    PROFILE = name
+    directory = ROOT if name == "technical" else ROOT / "profiles" / "lite"
+    MANIFEST = directory / "manifest.json"
+    LOCK = directory / "pack.lock.json"
+
+
 
 def api(path, params=None):
     query = "?" + urllib.parse.urlencode(params) if params else ""
@@ -203,7 +216,8 @@ def build():
         "files": files,
         "dependencies": {"minecraft": m["minecraft"], "fabric-loader": m["fabric_loader"]},
     }
-    out = ROOT / "dist" / f"Mees-SMP-Client-{m['version']}.mrpack"
+    prefix = "Mees-SMP-Lite" if PROFILE == "lite" else "Mees-SMP-Client"
+    out = ROOT / "dist" / f"{prefix}-{m['version']}.mrpack"
     out.parent.mkdir(exist_ok=True)
     data = (json.dumps(index, indent=2, ensure_ascii=False) + "\n").encode()
     # Deterministic file metadata -> reproducible .mrpack for unchanged lock.
@@ -219,7 +233,9 @@ def build():
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("command", choices=["lock", "build"])
+    parser.add_argument("--profile", choices=["technical", "lite"], default="technical")
     args = parser.parse_args()
+    set_profile(args.profile)
     if args.command == "lock":
         lock()
     else:

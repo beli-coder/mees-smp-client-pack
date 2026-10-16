@@ -1,0 +1,58 @@
+{
+  "name": "Mees SMP Lite",
+  "summary": "Optional lightweight QoL and performance client pack for Mees SMP: Sodium, Iris, voice chat, minimaps, simple inventory tools. Vanilla Java and Bedrock are welcome without mods.",
+  "version": "0.3.0",
+  "minecraft": "26.3",
+  "fabric_loader": "0.19.5",
+  "mods": [
+    {
+      "project": "fabric-api",
+      "description": "Required client APIs"
+    },
+    {
+      "project": "sodium",
+      "description": "Fast renderer"
+    },
+    {
+      "project": "iris",
+      "description": "Shaders and shaderpack loader"
+    },
+    {
+      "project": "immediatelyfast",
+      "description": "Optimizes HUD and immediate rendering"
+    },
+    {
+      "project": "entityculling",
+      "description": "Avoid rendering hidden entities"
+    },
+    {
+      "project": "modmenu",
+      "description": "In-game mod list and configuration"
+    },
+    {
+      "project": "xaeros-minimap",
+      "description": "Waypoints and minimap subject to fair-play restrictions"
+    },
+    {
+      "project": "xaeros-world-map",
+      "description": "Exploration map subject to server rules"
+    },
+    {
+      "project": "simple-voice-chat",
+      "description": "Voice chat client for Mees SMP",
+      "allow_beta": true
+    },
+    {
+      "project": "mouse-tweaks",
+      "description": "Fast inventory mouse interactions"
+    },
+    {
+      "project": "appleskin",
+      "description": "Saturation and hunger HUD"
+    },
+    {
+      "project": "shulkerboxtooltip",
+      "description": "Preview shulker box contents"
+    }
+  ]
+}
