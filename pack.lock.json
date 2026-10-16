@@ -1,11 +1,89 @@
 {
   "schema": 1,
+  "manifest_sha256": "d88a98a92e0eec3b3c4775ee515b6059d1ace25f45a1632540c9e05aca598d3b",
   "name": "Mees SMP Client Pack",
-  "summary": "Optional client-side quality-of-life mods for Mees SMP. Vanilla Java remains compatible.",
-  "version": "0.1.0",
+  "summary": "Full-featured optional Fabric 26.3 client pack for Mees SMP: shaders, distant terrain, inventory QoL, minimaps, voice and builders tools. Vanilla Java and Bedrock still join.",
+  "version": "0.2.2",
   "minecraft": "26.3",
   "fabric_loader": "0.19.5",
   "mods": [
+    {
+      "project_id": "9NM0dXub",
+      "project_name": "Fabric 1.7.3 (26.3)",
+      "version_id": "CWKBEIsY",
+      "version_number": "1.7.3",
+      "filename": "AdvancementPlaques-26.3-fabric-1.7.3.jar",
+      "url": "https://cdn.modrinth.com/data/9NM0dXub/versions/CWKBEIsY/AdvancementPlaques-26.3-fabric-1.7.3.jar",
+      "sha1": "cfe3e213ad29d4d91ba8b9ea05311a0f05e94f72",
+      "sha512": "9f8b65c611335d0b1a63b671660bd9e35d4719d3ffda57b27133bc8c1ff351a4ca8d61dcf9f0ec5b1068834ea6b8403f1ef73b798cab7524b29f32694eacbb76",
+      "size": 196090
+    },
+    {
+      "project_id": "EsAfCjCV",
+      "project_name": "appleskin-fabric-mc26.3-3.0.10",
+      "version_id": "PHjDtQay",
+      "version_number": "3.0.10+mc26.3",
+      "filename": "appleskin-fabric-mc26.3-3.0.10.jar",
+      "url": "https://cdn.modrinth.com/data/EsAfCjCV/versions/PHjDtQay/appleskin-fabric-mc26.3-3.0.10.jar",
+      "sha1": "3d19e40c5f97186857db98e622c01c2cd0030497",
+      "sha512": "17d257af419b7530aa8617c2e8c0e4bbfabcf888f26655790e0188e7957e0bcd931f85f9a4c69fd27e889dee5082cf7b2b8741a14a6ed4425e9ef4bfe13a8b8c",
+      "size": 180194
+    },
+    {
+      "project_id": "8shC1gFX",
+      "project_name": "BetterF3 Fabric v20.0.0 (26.3)",
+      "version_id": "XB7u4eSf",
+      "version_number": "20.0.0",
+      "filename": "BetterF3-20.0.0-Fabric-26.3.jar",
+      "url": "https://cdn.modrinth.com/data/8shC1gFX/versions/XB7u4eSf/BetterF3-20.0.0-Fabric-26.3.jar",
+      "sha1": "418b70684cf0e5a48c861216c86ae97949bc39f7",
+      "sha512": "1e78531358f690404efe98b26de1024284078596785420a92ff5dba052003064e87537936c006c3c58470ccdc2ed6ae69a65f26ca534366e90d97470f2973118",
+      "size": 719577
+    },
+    {
+      "project_id": "kqJFAPU9",
+      "project_name": "1.3.1",
+      "version_id": "M3Fe5t0L",
+      "version_number": "1.3.1",
+      "filename": "bettermounthud-1.3.1.jar",
+      "url": "https://cdn.modrinth.com/data/kqJFAPU9/versions/M3Fe5t0L/bettermounthud-1.3.1.jar",
+      "sha1": "f86040d5010c7aad1c677c7a7fefe52d3b386abd",
+      "sha512": "c7fff6ddc463178f7154d433a9dfe21443732d1f70f450a5e03860f631adb2f6a445d72fb59ac017f014add4881edf59d9960e9163d6d497d117bd16a8ae5295",
+      "size": 20780
+    },
+    {
+      "project_id": "Wb5oqrBJ",
+      "project_name": "1.3.2",
+      "version_id": "i3gcElvQ",
+      "version_number": "1.3.2",
+      "filename": "chat_heads-1.3.2-fabric-26.3.jar",
+      "url": "https://cdn.modrinth.com/data/Wb5oqrBJ/versions/i3gcElvQ/chat_heads-1.3.2-fabric-26.3.jar",
+      "sha1": "cf4eec23f6bc4b3ce7c3c20308694beb5f4c5edf",
+      "sha512": "2e18d30d38fde2417d9b18a6a7065333f80313e6b73430a82b657ecf4322127587dd0f63da90f93d718ffeef67f104c56c1ef169cf2cde362c11ab2cdfefcc47",
+      "size": 98686
+    },
+    {
+      "project_id": "9s6osm5g",
+      "project_name": "[Fabric 26.3] v26.3.159",
+      "version_id": "fg2uyxOW",
+      "version_number": "26.3.159+fabric",
+      "filename": "cloth-config-fabric-26.3.159.jar",
+      "url": "https://cdn.modrinth.com/data/9s6osm5g/versions/fg2uyxOW/cloth-config-fabric-26.3.159.jar",
+      "sha1": "9a5cce069380a2047250831dcb19f4ef1b15872d",
+      "sha512": "8924e19d41845096724fa10f3717bc51964a0edbbbcad0ff1e6c6187a398b08f356e49579a657c2dc44a7f92e3850771f3ca70bf8c1f654de60425163b91dbb1",
+      "size": 1135009
+    },
+    {
+      "project_id": "1IjD5062",
+      "project_name": "3.0.1+26.3",
+      "version_id": "Jt2sCWTQ",
+      "version_number": "3.0.1+26.3",
+      "filename": "continuity-3.0.1+26.3.jar",
+      "url": "https://cdn.modrinth.com/data/1IjD5062/versions/Jt2sCWTQ/continuity-3.0.1%2B26.3.jar",
+      "sha1": "63d51781b2c87e3b4b4ca98a133db8c98d3f2afb",
+      "sha512": "1ec1e3b2f73c26b19445d664822a8936e9076f4d8855a2ed5fac19786daa8da42da8fdc9526c4a53c227a82819a87ad8e73d5b4fc003f6519c50454c33014f04",
+      "size": 1002033
+    },
     {
       "project_id": "uCdwusMi",
       "project_name": "3.3.4 - 26.3 neo/fabric",
@@ -16,6 +94,17 @@
       "sha1": "310c0363068dfae18e91f799ed671a591b6ad49a",
       "sha512": "0b90b1b08d99974bfc3c8e86b2ceb252e2f91715ed66b925004c28335fb44e1bddbbb6b8043e4d4d53c87ed247789cd1788b1ba4e3f4394efe154e0c59cff236",
       "size": 28476894
+    },
+    {
+      "project_id": "NNAgCjsB",
+      "project_name": "1.11.3-26.3 - Fabric",
+      "version_id": "X1g3VhTx",
+      "version_number": "1.11.3",
+      "filename": "entityculling-fabric-1.11.3-mc26.3.jar",
+      "url": "https://cdn.modrinth.com/data/NNAgCjsB/versions/X1g3VhTx/entityculling-fabric-1.11.3-mc26.3.jar",
+      "sha1": "45f47f7a067f5efd733a32767dc3d1d770678b2a",
+      "sha512": "b6209bb62d72376d3fd284da137ec93a6dd38ebe5fd38ab9190deeade68b5b7f4bf915f4abcb4a807afe18cb9f0b59e11be789d46df6f0e6f64388ed2edc284d",
+      "size": 1508547
     },
     {
       "project_id": "P7dR8mSH",
@@ -40,6 +129,39 @@
       "size": 8142878
     },
     {
+      "project_id": "tEcWzCZz",
+      "project_name": "v1.9.3",
+      "version_id": "4rTrB3O6",
+      "version_number": "1.9.3",
+      "filename": "held-item-info-1.9.3.jar",
+      "url": "https://cdn.modrinth.com/data/tEcWzCZz/versions/4rTrB3O6/held-item-info-1.9.3.jar",
+      "sha1": "190d00465d0445b901ff80a3396c7b775e047d1e",
+      "sha512": "25c929a0be5f6af5c0b6549c150083d14c9ed39be24a46b2aafda62e82f0e992d19d426ccbc0990a99364bc675b74289b3cbff87b7ebdfd6033a36248057aaa5",
+      "size": 83067
+    },
+    {
+      "project_id": "5faXoLqX",
+      "project_name": "Fabric 1.4.3.1 (26.3)",
+      "version_id": "zhVGUJyW",
+      "version_number": "1.4.3.1",
+      "filename": "Iceberg-26.3-fabric-1.4.3.1.jar",
+      "url": "https://cdn.modrinth.com/data/5faXoLqX/versions/zhVGUJyW/Iceberg-26.3-fabric-1.4.3.1.jar",
+      "sha1": "e65d856fdfa925045b99283b60ba002dcca7e332",
+      "sha512": "22ab9c3394a289b16463c00116c44013e421bfca16f5370b92f32a193675322a9f47be47b21058721ecb2ce9ba534723bb1f39fd83e0c17dd0573d228a44ad4f",
+      "size": 361211
+    },
+    {
+      "project_id": "5ZwdcRci",
+      "project_name": "ImmediatelyFast 1.17.1",
+      "version_id": "3MP9UR23",
+      "version_number": "1.17.1+26.3-fabric",
+      "filename": "ImmediatelyFast-Fabric-1.17.1+26.3.jar",
+      "url": "https://cdn.modrinth.com/data/5ZwdcRci/versions/3MP9UR23/ImmediatelyFast-Fabric-1.17.1%2B26.3.jar",
+      "sha1": "f565bbeb201f2305e81761429d3f1f47e1c3a321",
+      "sha512": "8e139589fd995bce3d485a34d92a07243964212f7ed2e4fc2f6de5b9a74d0f59b03252e7ce40c64e006cf3e21bed5de27b830d33ef048b286e041f6178ad8428",
+      "size": 99586
+    },
+    {
       "project_id": "O7RBXm3n",
       "project_name": "Inventory Profiles Next 2.3.8 for fabric 26.3",
       "version_id": "y8vT21Sb",
@@ -62,6 +184,39 @@
       "size": 2850938
     },
     {
+      "project_id": "nvQzSEkH",
+      "project_name": "[Fabric 26.3.X] 26.3.5",
+      "version_id": "71CTWqdE",
+      "version_number": "26.3.5+fabric",
+      "filename": "Jade-mc26.3-Fabric-26.3.5.jar",
+      "url": "https://cdn.modrinth.com/data/nvQzSEkH/versions/71CTWqdE/Jade-mc26.3-Fabric-26.3.5.jar",
+      "sha1": "da61413c586c8918c14e2bbfdc808ce2d56ea9df",
+      "sha512": "2e7331e62eb6658268ae92dc42de8b469f50dd6c6a9d2546a6f649bae97c2cdfd8d4c1560948cf46269175d2c79c6c47a36a02685e39d476768d18fbb2a28703",
+      "size": 1092685
+    },
+    {
+      "project_id": "u6dRKJwZ",
+      "project_name": "31.14.0.72 for Fabric 26.3",
+      "version_id": "Zebwcvua",
+      "version_number": "31.14.0.72",
+      "filename": "jei-26.3-fabric-31.14.0.72.jar",
+      "url": "https://cdn.modrinth.com/data/u6dRKJwZ/versions/Zebwcvua/jei-26.3-fabric-31.14.0.72.jar",
+      "sha1": "7fdf21e3d04883b8930202b454e8cae0f89e9a6b",
+      "sha512": "5bbf0499207292d1e47fdc03139adec6dd90302b10648e7b283e4737631524d8c2b17ca9b7263b13f1fcdde9fd3f5867874b0a9c333c02bc55466dbbf8ce8ead",
+      "size": 2410982
+    },
+    {
+      "project_id": "yBW8D80W",
+      "project_name": "LambDynamicLights 4.13.0 (26.3)",
+      "version_id": "rylKnJ4M",
+      "version_number": "4.13.0+26.3",
+      "filename": "lambdynamiclights-4.13.0+26.3.jar",
+      "url": "https://cdn.modrinth.com/data/yBW8D80W/versions/rylKnJ4M/lambdynamiclights-4.13.0%2B26.3.jar",
+      "sha1": "18c8ab40f03219bfcf809a83db6e3958ed8bb866",
+      "sha512": "67c37ca7d619bd7f2b0dc02217070c20e34fb3bb3363d4e23f5ef9ca90b1b58adb223fab73639a3499d366497316f1eb297d2759f3ffb976467b4759f784619d",
+      "size": 1345715
+    },
+    {
       "project_id": "onSQdWhM",
       "project_name": "libIPN 6.9.0 for fabric 26.3",
       "version_id": "aKBFonyQ",
@@ -73,6 +228,116 @@
       "size": 640902
     },
     {
+      "project_id": "bEpr0Arc",
+      "project_name": "Litematica 26.3-0.29.1",
+      "version_id": "ZqV316KY",
+      "version_number": "0.29.1",
+      "filename": "litematica-fabric-26.3-0.29.1.jar",
+      "url": "https://cdn.modrinth.com/data/bEpr0Arc/versions/ZqV316KY/litematica-fabric-26.3-0.29.1.jar",
+      "sha1": "2c0e37ef450b7fcea61e0fce482f134d1fe5a9c6",
+      "sha512": "45a8d468463afb97b3fc72efa168024ad69e670e77f5455ecf588583434a1787b32795edf5236579c32c828b02873efb39a4808caa08bbbaf1d8b6b090b160c3",
+      "size": 1972556
+    },
+    {
+      "project_id": "GcWjdA9I",
+      "project_name": "MaLiLib 26.3-0.30.2",
+      "version_id": "JX9bESec",
+      "version_number": "0.30.2",
+      "filename": "malilib-fabric-26.3-0.30.2.jar",
+      "url": "https://cdn.modrinth.com/data/GcWjdA9I/versions/JX9bESec/malilib-fabric-26.3-0.30.2.jar",
+      "sha1": "832a00c0d6417d7f195fbe1b1c643bbd4893e64a",
+      "sha512": "8f17a5d70cb2f461aeb540f4a99de01c3351f8d3678d902d3d00cfe5d10c039fdc111c1079fe23aacb7936b793ad1cd045a8dc3a9e7926865820c254d92345b8",
+      "size": 2081094
+    },
+    {
+      "project_id": "7tEfOcA7",
+      "project_name": "MezzConfig 0.6.8 for Fabric 26.3",
+      "version_id": "GKiA7PV4",
+      "version_number": "0.6.8",
+      "filename": "mezz_config-26.3-fabric-0.6.8.jar",
+      "url": "https://cdn.modrinth.com/data/7tEfOcA7/versions/GKiA7PV4/mezz_config-26.3-fabric-0.6.8.jar",
+      "sha1": "7e7770093973e2ffb53ff9fb8d32304bf73744c4",
+      "sha512": "cf0957c09bd0af1be7627cf68d1ceaad92bcb06c529ab85db5c26ae8a4950b236b7c62e5d096fc1b82c718578519b674b0970f8843c2d2178c14f3e63c28fd06",
+      "size": 368401
+    },
+    {
+      "project_id": "UMxybHE8",
+      "project_name": "MiniHUD 26.3-0.41.2",
+      "version_id": "WfIgkxnf",
+      "version_number": "0.41.2",
+      "filename": "minihud-fabric-26.3-0.41.2.jar",
+      "url": "https://cdn.modrinth.com/data/UMxybHE8/versions/WfIgkxnf/minihud-fabric-26.3-0.41.2.jar",
+      "sha1": "be8c84a976462d3fb06c232eafbd74053c342b91",
+      "sha512": "bc69152a78b4b70c065415ff6695cf5285d769e33e8dbc2109d645c012cc811b55349966bf4598edaa514869caed1fdd38e17507239410f76740d7fd66b8c518",
+      "size": 943101
+    },
+    {
+      "project_id": "mOgUt4GM",
+      "project_name": "v21.0.0 for 26.3",
+      "version_id": "kyy7dbrZ",
+      "version_number": "21.0.0",
+      "filename": "modmenu-21.0.0.jar",
+      "url": "https://cdn.modrinth.com/data/mOgUt4GM/versions/kyy7dbrZ/modmenu-21.0.0.jar",
+      "sha1": "66ec40f1cd0c037ddca2b5fc6b4b976d479c18e8",
+      "sha512": "588c0c557963f4778572ee81bfafc190b332c26d5926c5fe7e3e1614dcf8e14f58e3bc80a97694521dd05907e9753a7c8575048ea769e4dbf40a3db74a4e2606",
+      "size": 856779
+    },
+    {
+      "project_id": "aC3cM3Vq",
+      "project_name": "[26.3 Fabric] Mouse Tweaks 2.31",
+      "version_id": "LeMuMhLv",
+      "version_number": "26.3-2.31-fabric",
+      "filename": "MouseTweaks-fabric-mc26.3-2.31.jar",
+      "url": "https://cdn.modrinth.com/data/aC3cM3Vq/versions/LeMuMhLv/MouseTweaks-fabric-mc26.3-2.31.jar",
+      "sha1": "65c0f5588900e7ade476164ec4915bfab52c129a",
+      "sha512": "61c011308b5d1d0b2163473cbbc1ad0f1b3ac873b77e3e9ff67ccb437a946fbe5f34077281ebd2b91647324969d319f6499ac4b319cfcb9ea027bac47a52c081",
+      "size": 74569
+    },
+    {
+      "project_id": "MPCX6s5C",
+      "project_name": "1.12.6-26.3 - Fabric",
+      "version_id": "EhSk2OTD",
+      "version_number": "1.12.6",
+      "filename": "notenoughanimations-fabric-1.12.6-mc26.3.jar",
+      "url": "https://cdn.modrinth.com/data/MPCX6s5C/versions/EhSk2OTD/notenoughanimations-fabric-1.12.6-mc26.3.jar",
+      "sha1": "6554509fc89187c5b6d63f586edfc35b8e41158c",
+      "sha512": "a27a2cf8caa57a15871cd1a2c2f37fa1b1f4a55b25345306b87989c3b5030e4d4409c6b50330dbb6902a2381b140c401d0da6f5aed8e2700ed7ca8f9f2365f5c",
+      "size": 1863579
+    },
+    {
+      "project_id": "eXts2L7r",
+      "project_name": "3.2.0+26.3",
+      "version_id": "lXytLqWj",
+      "version_number": "3.2.0+26.3",
+      "filename": "placeholder-api-3.2.0+26.3.jar",
+      "url": "https://cdn.modrinth.com/data/eXts2L7r/versions/lXytLqWj/placeholder-api-3.2.0%2B26.3.jar",
+      "sha1": "4c455faa6333dbaef72cedbb91fe4a2a03176741",
+      "sha512": "eb2bb31e51068aad2581b7864ea7b11b1209ba1c2b27551cd5837d9b312b818b73bb47c06374b46b99b73401c62c6b6c115f702c55aed6afd467ad8ad6448de4",
+      "size": 254959
+    },
+    {
+      "project_id": "Bh37bMuy",
+      "project_name": "[Fabric] Reese's Sodium Options 2.2.5 - Minecraft 26.3",
+      "version_id": "EfchygKx",
+      "version_number": "mc26.3-2.2.5+fabric",
+      "filename": "reeses-sodium-options-fabric-2.2.5+mc26.3.jar",
+      "url": "https://cdn.modrinth.com/data/Bh37bMuy/versions/EfchygKx/reeses-sodium-options-fabric-2.2.5%2Bmc26.3.jar",
+      "sha1": "305aa813172358eb5e95d0a7af02a44326261226",
+      "sha512": "9c6f335618c1ec03cf9030cd88cdc32be5457bf4fbabd49c76ed68df53530730cf4681ec3742f2c6efbd48cb2b784f24c636977a95d78df62af1214ec5488be0",
+      "size": 258082
+    },
+    {
+      "project_id": "2M01OLQq",
+      "project_name": "[Fabric 26.3] v5.4.2+26.3",
+      "version_id": "Cj9VEeGt",
+      "version_number": "5.4.2+26.3-fabric",
+      "filename": "shulkerboxtooltip-fabric-5.4.2+26.3.jar",
+      "url": "https://cdn.modrinth.com/data/2M01OLQq/versions/Cj9VEeGt/shulkerboxtooltip-fabric-5.4.2%2B26.3.jar",
+      "sha1": "2280c8ca8d77b4dcd5617daab3428b8115bef8d6",
+      "sha512": "737218bda3c35fe0753595e849850bb036eefd95181a542bdbdc8ab7c47795308be10b9aec45ca7880776c1711184536d0bf468fe76e94c674daac9ed73d8826",
+      "size": 422719
+    },
+    {
       "project_id": "AANobbMI",
       "project_name": "Sodium 0.9.2 for Fabric 26.3",
       "version_id": "bAZQdGpg",
@@ -82,6 +347,28 @@
       "sha1": "9acfe851e36f4fb27d7c5baa224e8bd4e0334283",
       "sha512": "f3f260f204b8ce5e8777c2c73f537956755ec61f3817b0b78b5e5568e8aa40f14891f146475075109747665c7c88a45ca0ca9a8df3c68d79c58ecdaa8d8c4b93",
       "size": 1908068
+    },
+    {
+      "project_id": "wySVd6d8",
+      "project_name": "1.5.2+26.3",
+      "version_id": "m9jJPsQ6",
+      "version_number": "1.5.2+26.3",
+      "filename": "tooltip-scroll-1.5.2+26.3.jar",
+      "url": "https://cdn.modrinth.com/data/wySVd6d8/versions/m9jJPsQ6/tooltip-scroll-1.5.2%2B26.3.jar",
+      "sha1": "b615a94913ab26a2ad78ccc9750cd258429373bb",
+      "sha512": "b9ab669f683b9abbfabdb15c7ea98c7b25fa09cd4b79a85107874d39044b5513b537d268371309ec6c3af7fd05516eb3e69ebb5582d68138eccc7def496b73b4",
+      "size": 89382
+    },
+    {
+      "project_id": "rI0hvYcd",
+      "project_name": "[26.3] Visuality 0.7.15",
+      "version_id": "BNe9kpJ7",
+      "version_number": "0.7.15+26.3",
+      "filename": "visuality-0.7.15+26.3.jar",
+      "url": "https://cdn.modrinth.com/data/rI0hvYcd/versions/BNe9kpJ7/visuality-0.7.15%2B26.3.jar",
+      "sha1": "9c6c1554114150464716b8a82da8a8872ea3db8e",
+      "sha512": "90145cad547d329d5134eabbf45c7f35b1d0ce3ff2bcef8a1b187dc33723121b1a235c0cc259043588835b0cb7b31cba4aa84d738be810f0ea073308bec2eb4a",
+      "size": 81970
     },
     {
       "project_id": "9eGKb6K1",
@@ -115,6 +402,28 @@
       "sha1": "9ace0b064668929e3f1df6b7eb012ac713526e96",
       "sha512": "e80c6bd6729c059c3e433e7e77714ed4c7f20e1a487f7449cf47282e9816b51523efe39183090b76a56834ffc67090317e70324730f311ba2e71fa24eec539c6",
       "size": 1485579
+    },
+    {
+      "project_id": "1eAoo2KR",
+      "project_name": "3.9.7 for fabric 26.3",
+      "version_id": "s9SjoFu1",
+      "version_number": "3.9.7+26.3-fabric",
+      "filename": "yet_another_config_lib_v3-3.9.7+26.3-fabric.jar",
+      "url": "https://cdn.modrinth.com/data/1eAoo2KR/versions/s9SjoFu1/yet_another_config_lib_v3-3.9.7%2B26.3-fabric.jar",
+      "sha1": "e54d86dd4a78f95cd6ec0309d96fae01e661c00d",
+      "sha512": "f3957028dd31cae78f08aee3e768f61bd12c4c8423257d357bc3c1a2172047c769d37901f99775c7ffff1e5ee794025dc72738b2869cab06f1c2811841d68b24",
+      "size": 1125377
+    },
+    {
+      "project_id": "w7ThoJFB",
+      "project_name": "Zoomify 2.17.0+mc26.3",
+      "version_id": "RUBpNu00",
+      "version_number": "2.17.0+mc26.3",
+      "filename": "zoomify-2.17.0+mc26.3-universal.jar",
+      "url": "https://cdn.modrinth.com/data/w7ThoJFB/versions/RUBpNu00/zoomify-2.17.0%2Bmc26.3-universal.jar",
+      "sha1": "7f18090fea4a2ddae01e032d09629d14fa381d3f",
+      "sha512": "1c5bc8e46a3575847584bb6993034dbe7d8060be32ee676c473d36bd4bbbc4df21d03a8f3b3f8904e42312667e9716050cca2cf7a098c8ebf6985d52eea4d637",
+      "size": 579146
     }
   ]
 }
