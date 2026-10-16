@@ -125,6 +125,11 @@ def lock():
             if dependency.get("dependency_type") != "required":
                 continue
             did, dproj = dependency.get("version_id"), dependency.get("project_id")
+            # Zoomify's Fabric 26.3 release mistakenly lists a Forge-only
+            # dependency in shared Modrinth metadata; skip only that edge.
+            if project == "zoomify" and dproj == "1vrSzlao":
+                print("Skipping Zoomify's NeoForge-only KotlinLangForge dependency for Fabric (1vrSzlao)")
+                continue
             if not dproj:
                 # A required dependency without a project ID is ambiguous;
                 # don't assume that a version ID can be used as a project slug.

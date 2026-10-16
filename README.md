@@ -1,4 +1,4 @@
-# Mees SMP Client Pack — Deluxe (v0.2.0)
+# Mees SMP Client Pack — Deluxe (v0.2.2)
 
 **Minecraft Java 26.3 · Fabric Loader 0.19.5 · optional, client-side**
 
@@ -40,7 +40,7 @@ cd ~/mees-pack-pipeline
 python3 -m unittest discover -s tests -v
 python3 scripts/modpack.py lock
 python3 scripts/modpack.py build
-ls -lh dist/Mees-SMP-Client-0.2.0.mrpack
+ls -lh dist/Mees-SMP-Client-0.2.2.mrpack
 ```
 
 - `lock` uses the Modrinth API to choose Fabric **26.3** versions, resolves required dependencies recursively and stores pinned version IDs, URLs and SHA hashes in `pack.lock.json`.
@@ -56,7 +56,7 @@ If you previously copied `mees-smp-modpack-pipeline.zip` to `~/mees-pack-pipelin
 ### Install instructions for players
 
 1. Install the Modrinth App, sign in using your Minecraft account.
-2. **Import** `Mees-SMP-Client-0.2.0.mrpack`. The launcher fetches the mods and dependencies from approved file URLs.
+2. **Import** `Mees-SMP-Client-0.2.2.mrpack`. The launcher fetches the mods and dependencies from approved file URLs.
 3. Start the imported profile (Minecraft 26.3 / Fabric 0.19.5), configure keybinds, optionally add a shader pack, and join `mees.clayton.engineer`.
 4. Press `V` in-game to configure voice chat. If voice won't connect, check the client mod and UDP 25567.
 5. Vanilla Java/Bedrock still work without this pack. Bedrock uses UDP 25566.
@@ -87,12 +87,12 @@ python3 scripts/modpack.py lock
 python3 scripts/modpack.py build
 # Import into an empty client instance and confirm it launches and joins Mees SMP.
 git add manifest.json pack.lock.json scripts/modpack.py README.md tests/ .github/
-git commit -m 'Release deluxe Mees SMP client pack 0.2.0'
-git tag v0.2.0
-git push origin main v0.2.0
+git commit -m 'Release deluxe Mees SMP client pack 0.2.2'
+git tag v0.2.2
+git push origin main v0.2.2
 ```
 
-**Do not push a tag until the full client pack has been tested.** Direct GitHub `.mrpack` distribution requires users to re-import updates; a real Modrinth modpack project enables launcher-managed updates. Never include Hagrid's Cloudflare tunnel token, server access phrase, or private configuration in this repository.
+**Do not push a tag until the full client pack has been tested.** The main-branch workflow refreshes the lockfile only if the manifest changes and commits it through the GitHub Actions bot. Tagged releases do not refresh it and only build from the pinned lock.\n\nDirect GitHub `.mrpack` distribution requires users to re-import updates; a real Modrinth modpack project enables launcher-managed updates. Never include Hagrid's Cloudflare tunnel token, server access phrase, or private configuration in this repository.
 
 ## D. Separate proposal for a mandatory gameplay pack
 

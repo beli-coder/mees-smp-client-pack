@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.2.2 — CI release repair
+
+- Align the client manifest with the intended release, upgrade the Zoomify Fabric dependency resolver, and keep pinned builds for tags.
+- Refresh and commit the lockfile when the manifest changes on main, instead of failing on an obsolete lockfile.
+- Retain Node.js 24-compatible GitHub Actions.
+
 ## 0.2.0 — Deluxe client pack (draft, pending live dependency lock and test)
 
 - Expanded from 8 to 31 explicitly requested Fabric 26.3 mods plus their required libraries.
