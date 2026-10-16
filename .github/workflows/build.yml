@@ -141,9 +141,9 @@ jobs:
             echo "::error::Modrinth version $release_version already exists with different file hashes; bump the manifest version to release an update."
             exit 1
           fi
-          payload=$(jq -cn --arg pid "$project_id" --arg v "$release_version" --arg mc "$mc" '{
+          payload=$(jq -cn --arg pid "$project_id" --arg v "$release_version" --arg display "$v" --arg mc "$mc" '{
             project_id: $pid,
-            name: ("Mees SMP Technical " + $v),
+            name: ("Mees SMP Technical " + $display),
             version_number: $v,
             changelog: ("Official Mees SMP Technical client modpack " + $v + ". Includes performance, shaders, Distant Horizons, mapping, voice chat, inventory QoL, and building tools."),
             dependencies: [],
@@ -215,9 +215,9 @@ jobs:
             echo "::error::Modrinth version $release_version already exists with different file hashes; bump the manifest version to release an update."
             exit 1
           fi
-          payload=$(jq -cn --arg pid "$project_id" --arg v "$release_version" --arg mc "$mc" '{
+          payload=$(jq -cn --arg pid "$project_id" --arg v "$release_version" --arg display "$v" --arg mc "$mc" '{
             project_id: $pid,
-            name: ("Mees SMP Lite " + $v),
+            name: ("Mees SMP Lite " + $display),
             version_number: $v,
             changelog: ("Official Mees SMP Lite client modpack " + $v + ". Includes Sodium, Iris, maps, voice chat, and simple QoL enhancements."),
             dependencies: [],
