@@ -109,3 +109,20 @@ git push origin main v0.2.2
 - Confirm vanilla Java and Bedrock can still join the unchanged server.
 
 Project sources and documentation: [Modrinth `.mrpack` format](https://support.modrinth.com/en/articles/8802351-modrinth-modpack-format-mrpack), [pack sharing](https://support.modrinth.com/en/articles/8797522-sharing-modpacks), [Xaero server datapack](https://modrinth.com/datapack/xaeros-map-server-utils).
+
+## F. Publishing directly to the Modrinth project
+
+The pack is published at [Mees Modpack](https://modrinth.com/project/mees-modpack). Install or update it through the Modrinth App after the Modrinth project and its version have been approved.
+
+The GitHub Actions workflow can upload pinned .mrpack builds directly to this project. Create a **Modrinth personal access token** with the **Create versions (VERSION_CREATE)** scope and membership permission to publish versions of `mees-modpack`. Save the token in this GitHub repository under **Settings → Secrets and variables → Actions → New repository secret**, name `MODRINTH_TOKEN`. Never commit the token or paste it in chat.
+
+To publish the existing 0.2.2 version (whose tag predates this workflow change):
+1. Open **Actions → Build Mees SMP Client Pack → Run workflow** in GitHub.
+2. Choose branch `main` and enable **Publish the tested pack to Modrinth**.
+3. Run the workflow and confirm the Modrinth publication step succeeds.
+4. Verify the uploaded version on the Modrinth project and check whether the project is awaiting moderation.
+
+For **future** versions, update `manifest.json` to the new version, let the main-branch workflow regenerate and commit `pack.lock.json`, test the new .mrpack, and push a new matching `vX.Y.Z` tag. The tagged workflow builds the exact lockfile, publishes to Modrinth, and creates the GitHub Release.
+
+Publishing is idempotent: the workflow reuses a version when its SHA-512 file hash matches, and deliberately fails if that version number exists with different content. Bump the version rather than overwriting an existing release.
+
