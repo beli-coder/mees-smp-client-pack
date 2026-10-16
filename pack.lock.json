@@ -1,0 +1,120 @@
+{
+  "schema": 1,
+  "name": "Mees SMP Client Pack",
+  "summary": "Optional client-side quality-of-life mods for Mees SMP. Vanilla Java remains compatible.",
+  "version": "0.1.0",
+  "minecraft": "26.3",
+  "fabric_loader": "0.19.5",
+  "mods": [
+    {
+      "project_id": "uCdwusMi",
+      "project_name": "3.3.4 - 26.3 neo/fabric",
+      "version_id": "TGgEbP9A",
+      "version_number": "3.3.4-26.3",
+      "filename": "DistantHorizons-3.3.4-26.3-fabric-neoforge.jar",
+      "url": "https://cdn.modrinth.com/data/uCdwusMi/versions/TGgEbP9A/DistantHorizons-3.3.4-26.3-fabric-neoforge.jar",
+      "sha1": "310c0363068dfae18e91f799ed671a591b6ad49a",
+      "sha512": "0b90b1b08d99974bfc3c8e86b2ceb252e2f91715ed66b925004c28335fb44e1bddbbb6b8043e4d4d53c87ed247789cd1788b1ba4e3f4394efe154e0c59cff236",
+      "size": 28476894
+    },
+    {
+      "project_id": "P7dR8mSH",
+      "project_name": "[26.3] Fabric API 0.163.0+26.3",
+      "version_id": "bq3SsNGk",
+      "version_number": "0.163.0+26.3",
+      "filename": "fabric-api-0.163.0+26.3.jar",
+      "url": "https://cdn.modrinth.com/data/P7dR8mSH/versions/bq3SsNGk/fabric-api-0.163.0%2B26.3.jar",
+      "sha1": "65ada8c72b61ffb256e956baf53df28155daa479",
+      "sha512": "44fd8de10fa71ea39cf984d44d2ec4c8e9314f8af88ad95788d9a09ac7b02b5c2f796ae88f40e314bd27df677e66fed59d1a1b6784350b0cc1fd62efac9e08a3",
+      "size": 1774707
+    },
+    {
+      "project_id": "Ha28R6CL",
+      "project_name": "Fabric Language Kotlin 1.14.2+kotlin.2.4.21",
+      "version_id": "SKW1BTL3",
+      "version_number": "1.14.2+kotlin.2.4.21",
+      "filename": "fabric-language-kotlin-1.14.2+kotlin.2.4.21.jar",
+      "url": "https://cdn.modrinth.com/data/Ha28R6CL/versions/SKW1BTL3/fabric-language-kotlin-1.14.2%2Bkotlin.2.4.21.jar",
+      "sha1": "f1d4ab6ecd54d9782521333a87eb50724ecb03e0",
+      "sha512": "7fb475c4a7e7bdf8d0aca4b5798a58a354c51443d5b1fbde3e8cf34dfbf7191ef4238b5f07d08ec9490ec180b371624523326c3ad45d4ed2b2be541de9407e5d",
+      "size": 8142878
+    },
+    {
+      "project_id": "O7RBXm3n",
+      "project_name": "Inventory Profiles Next 2.3.8 for fabric 26.3",
+      "version_id": "y8vT21Sb",
+      "version_number": "fabric-26.3-2.3.8",
+      "filename": "InventoryProfilesNext-fabric-26.3-2.3.8.jar",
+      "url": "https://cdn.modrinth.com/data/O7RBXm3n/versions/y8vT21Sb/InventoryProfilesNext-fabric-26.3-2.3.8.jar",
+      "sha1": "2e0c90e7a1e7aab6cd6d65349f55b69f79995a9e",
+      "sha512": "dbd7d0eeb71108f5d784dfe7aad6f0e774893491a8b571f9886df9fbed01803abbb63c1ea88765aa08a838044885cc1aef85c5d85a94c8945120f2f973c0ecad",
+      "size": 1485260
+    },
+    {
+      "project_id": "YL57xq9U",
+      "project_name": "Iris 1.11.7 for Fabric 26.3",
+      "version_id": "vTN4NRGW",
+      "version_number": "1.11.7+26.3-fabric",
+      "filename": "iris-fabric-1.11.7+mc26.3.jar",
+      "url": "https://cdn.modrinth.com/data/YL57xq9U/versions/vTN4NRGW/iris-fabric-1.11.7%2Bmc26.3.jar",
+      "sha1": "fa03640ba1e4ef2f7ae3619c6373a06e46d0ba2c",
+      "sha512": "d8d3312f77fc52a48e4a6cd836fda33669bdebcb4de0b8c0d30adc808b287330a533e0baef355cc1ce6336a26851d9775369a802a4666b7b7a6266af20088f42",
+      "size": 2850938
+    },
+    {
+      "project_id": "onSQdWhM",
+      "project_name": "libIPN 6.9.0 for fabric 26.3",
+      "version_id": "aKBFonyQ",
+      "version_number": "fabric-26.3-6.9.0",
+      "filename": "libIPN-fabric-26.3-6.9.0.jar",
+      "url": "https://cdn.modrinth.com/data/onSQdWhM/versions/aKBFonyQ/libIPN-fabric-26.3-6.9.0.jar",
+      "sha1": "f989cd24ace83f73db6bfcf704cab99ad6d53d10",
+      "sha512": "a580af93344e21f985c34e5bfe74361767a4ba49ced96d50c917d5008d9eb32e797e0ff68c010319c6116b6859fa5fb39544f4f78dd9f7892554340d86420abd",
+      "size": 640902
+    },
+    {
+      "project_id": "AANobbMI",
+      "project_name": "Sodium 0.9.2 for Fabric 26.3",
+      "version_id": "bAZQdGpg",
+      "version_number": "mc26.3-0.9.2-fabric",
+      "filename": "sodium-fabric-0.9.2+mc26.3.jar",
+      "url": "https://cdn.modrinth.com/data/AANobbMI/versions/bAZQdGpg/sodium-fabric-0.9.2%2Bmc26.3.jar",
+      "sha1": "9acfe851e36f4fb27d7c5baa224e8bd4e0334283",
+      "sha512": "f3f260f204b8ce5e8777c2c73f537956755ec61f3817b0b78b5e5568e8aa40f14891f146475075109747665c7c88a45ca0ca9a8df3c68d79c58ecdaa8d8c4b93",
+      "size": 1908068
+    },
+    {
+      "project_id": "9eGKb6K1",
+      "project_name": "Simple Voice Chat 2.6.24+26.3",
+      "version_id": "OLnMVWXy",
+      "version_number": "fabric-2.6.24+26.3",
+      "filename": "voicechat-fabric-2.6.24+26.3.jar",
+      "url": "https://cdn.modrinth.com/data/9eGKb6K1/versions/OLnMVWXy/voicechat-fabric-2.6.24%2B26.3.jar",
+      "sha1": "2ac4bb844e3b23b6e0a729edcf521ba1198ec5d2",
+      "sha512": "414eb51967305fe7740d34016bc8e3e4e2fa1590e1278ad06bcdfa0687f65007b825d345dc09f79a992704a51ec93baf01fe727e0bbc32fdf506828b5a65d85a",
+      "size": 5612855
+    },
+    {
+      "project_id": "1bokaNcj",
+      "project_name": "Xaero's Minimap 26.6.0",
+      "version_id": "B2aG1aya",
+      "version_number": "fabric-26.3-26.6.0",
+      "filename": "xaerominimap-fabric-26.3-26.6.0.jar",
+      "url": "https://cdn.modrinth.com/data/1bokaNcj/versions/B2aG1aya/xaerominimap-fabric-26.3-26.6.0.jar",
+      "sha1": "287f670348124261bef5c7833715c49960e74dee",
+      "sha512": "c704ed5154e66e891517b9b6778b3227a276823844ec70b348a32dc91d38e3500a6e74d8c69d7f9c68e3137b49511258b0b7d5e0b503391dd959f31e8c4e5112",
+      "size": 2230141
+    },
+    {
+      "project_id": "NcUtCpym",
+      "project_name": "Xaero's World Map 1.47.0",
+      "version_id": "nz9xjzWi",
+      "version_number": "fabric-26.3-1.47.0",
+      "filename": "xaeroworldmap-fabric-26.3-1.47.0.jar",
+      "url": "https://cdn.modrinth.com/data/NcUtCpym/versions/nz9xjzWi/xaeroworldmap-fabric-26.3-1.47.0.jar",
+      "sha1": "9ace0b064668929e3f1df6b7eb012ac713526e96",
+      "sha512": "e80c6bd6729c059c3e433e7e77714ed4c7f20e1a487f7449cf47282e9816b51523efe39183090b76a56834ffc67090317e70324730f311ba2e71fa24eec539c6",
+      "size": 1485579
+    }
+  ]
+}

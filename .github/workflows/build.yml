@@ -1,0 +1,42 @@
+name: Build Mees SMP Client Pack
+on:
+  push:
+    branches: [main]
+    tags: ['v*']
+  workflow_dispatch:
+permissions:
+  contents: write  # needed for tag-triggered GitHub Releases
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Test pack build and dependency resolution
+        run: python -m unittest discover -s tests -v
+      - name: Check release tag matches manifest version
+        if: startsWith(github.ref, 'refs/tags/v')
+        env:
+          GIT_REF: ${{ github.ref_name }}
+        run: |
+          python - <<'PY'
+          import json, os
+          from pathlib import Path
+          version = json.loads(Path('manifest.json').read_text())['version']
+          assert os.environ['GIT_REF'] == 'v' + version, 'Git tag must match manifest version'
+          PY
+      - name: Build from committed lockfile (no network resolution)
+        run: python scripts/modpack.py build
+      - name: Upload installable Modrinth pack
+        uses: actions/upload-artifact@v4
+        with:
+          name: mees-smp-client
+          path: dist/*.mrpack
+          if-no-files-found: error
+      - name: Publish tagged pack to GitHub Releases
+        if: startsWith(github.ref, 'refs/tags/v')
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh release create "$GITHUB_REF_NAME" dist/*.mrpack --generate-notes --title "Mees SMP Client $GITHUB_REF_NAME"

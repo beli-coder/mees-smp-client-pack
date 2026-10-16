@@ -1,0 +1,137 @@
+{
+  "name": "Mees SMP Client Pack",
+  "summary": "Full-featured optional Fabric 26.3 client pack for Mees SMP: shaders, distant terrain, inventory QoL, minimaps, voice and builders tools. Vanilla Java and Bedrock still join.",
+  "version": "0.2.0",
+  "minecraft": "26.3",
+  "fabric_loader": "0.19.5",
+  "mods": [
+    {
+      "project": "iris",
+      "description": "Shaders and shaderpack loader"
+    },
+    {
+      "project": "sodium",
+      "description": "Fast renderer"
+    },
+    {
+      "project": "distanthorizons",
+      "description": "Long-distance LOD rendering"
+    },
+    {
+      "project": "immediatelyfast",
+      "description": "Optimizes HUD and immediate rendering"
+    },
+    {
+      "project": "entityculling",
+      "description": "Avoid rendering hidden entities"
+    },
+    {
+      "project": "reeses-sodium-options",
+      "description": "Improved Sodium menu"
+    },
+    {
+      "project": "continuity",
+      "description": "Connected glass/textures"
+    },
+    {
+      "project": "lambdynamiclights",
+      "description": "Dynamic handheld light"
+    },
+    {
+      "project": "visuality",
+      "description": "Ambient particles",
+      "allow_beta": true
+    },
+    {
+      "project": "not-enough-animations",
+      "description": "More third-person animations"
+    },
+    {
+      "project": "modmenu",
+      "description": "In-game mod list and configuration"
+    },
+    {
+      "project": "xaeros-minimap",
+      "description": "Waypoints and minimap subject to fair-play restrictions"
+    },
+    {
+      "project": "xaeros-world-map",
+      "description": "Exploration map subject to server rules"
+    },
+    {
+      "project": "simple-voice-chat",
+      "description": "Voice chat client for Mees SMP",
+      "allow_beta": true
+    },
+    {
+      "project": "mouse-tweaks",
+      "description": "Fast inventory mouse interactions"
+    },
+    {
+      "project": "inventory-profiles-next",
+      "description": "Sorting, locked slots, quick transfer"
+    },
+    {
+      "project": "shulkerboxtooltip",
+      "description": "Preview shulker box contents"
+    },
+    {
+      "project": "appleskin",
+      "description": "Saturation and hunger HUD"
+    },
+    {
+      "project": "jade",
+      "description": "Block and entity information overlay",
+      "allow_beta": true
+    },
+    {
+      "project": "betterf3",
+      "description": "Readable configurable F3 display"
+    },
+    {
+      "project": "zoomify",
+      "description": "Smooth optical zoom"
+    },
+    {
+      "project": "tooltip-scroll",
+      "description": "Scrollable long tooltips"
+    },
+    {
+      "project": "chat-heads",
+      "description": "Heads next to chat messages"
+    },
+    {
+      "project": "held-item-info",
+      "description": "Enchantments and held item details"
+    },
+    {
+      "project": "better-mount-hud",
+      "description": "Improved horse/mount HUD"
+    },
+    {
+      "project": "advancement-plaques",
+      "description": "Improved advancement notifications"
+    },
+    {
+      "project": "jei",
+      "description": "Recipes and usages (one recipe viewer, not also REI/EMI)",
+      "allow_beta": true
+    },
+    {
+      "project": "litematica",
+      "description": "Schematics for builders, no printer included"
+    },
+    {
+      "project": "minihud",
+      "description": "Configurable placement / light-level overlays"
+    },
+    {
+      "project": "malilib",
+      "description": "Dependency for Litematica and MiniHUD"
+    },
+    {
+      "project": "fabric-api",
+      "description": "Required client APIs"
+    }
+  ]
+}
