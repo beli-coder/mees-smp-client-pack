@@ -1,9 +1,9 @@
 {
   "schema": 1,
-  "manifest_sha256": "d88a98a92e0eec3b3c4775ee515b6059d1ace25f45a1632540c9e05aca598d3b",
-  "name": "Mees SMP Client Pack",
-  "summary": "Full-featured optional Fabric 26.3 client pack for Mees SMP: shaders, distant terrain, inventory QoL, minimaps, voice and builders tools. Vanilla Java and Bedrock still join.",
-  "version": "0.2.2",
+  "manifest_sha256": "a79604c47c744a5dc5f879aab9d3db3f0f89ca3ee0a12d69105534aa5e88e8be",
+  "name": "Mees SMP Technical",
+  "summary": "Optional full-featured Fabric 26.3 client pack for technical Mees SMP players: shaders, distant terrain, Litematica, MiniHUD, maps, voice chat, enhanced inventory and performance mods.",
+  "version": "0.3.0",
   "minecraft": "26.3",
   "fabric_loader": "0.19.5",
   "mods": [

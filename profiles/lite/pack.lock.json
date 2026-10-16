@@ -1,5 +1,154 @@
 {
   "schema": 1,
-  "version": "0.0.0",
-  "mods": []
+  "manifest_sha256": "f1e88cf6e6cd50459c3bf0c1a963e59cc185909e3eb4a10648e39490053f0876",
+  "name": "Mees SMP Lite",
+  "summary": "Optional lightweight QoL and performance client pack for Mees SMP: Sodium, Iris, voice chat, minimaps, simple inventory tools. Vanilla Java and Bedrock are welcome without mods.",
+  "version": "0.3.0",
+  "minecraft": "26.3",
+  "fabric_loader": "0.19.5",
+  "mods": [
+    {
+      "project_id": "EsAfCjCV",
+      "project_name": "appleskin-fabric-mc26.3-3.0.10",
+      "version_id": "PHjDtQay",
+      "version_number": "3.0.10+mc26.3",
+      "filename": "appleskin-fabric-mc26.3-3.0.10.jar",
+      "url": "https://cdn.modrinth.com/data/EsAfCjCV/versions/PHjDtQay/appleskin-fabric-mc26.3-3.0.10.jar",
+      "sha1": "3d19e40c5f97186857db98e622c01c2cd0030497",
+      "sha512": "17d257af419b7530aa8617c2e8c0e4bbfabcf888f26655790e0188e7957e0bcd931f85f9a4c69fd27e889dee5082cf7b2b8741a14a6ed4425e9ef4bfe13a8b8c",
+      "size": 180194
+    },
+    {
+      "project_id": "NNAgCjsB",
+      "project_name": "1.11.3-26.3 - Fabric",
+      "version_id": "X1g3VhTx",
+      "version_number": "1.11.3",
+      "filename": "entityculling-fabric-1.11.3-mc26.3.jar",
+      "url": "https://cdn.modrinth.com/data/NNAgCjsB/versions/X1g3VhTx/entityculling-fabric-1.11.3-mc26.3.jar",
+      "sha1": "45f47f7a067f5efd733a32767dc3d1d770678b2a",
+      "sha512": "b6209bb62d72376d3fd284da137ec93a6dd38ebe5fd38ab9190deeade68b5b7f4bf915f4abcb4a807afe18cb9f0b59e11be789d46df6f0e6f64388ed2edc284d",
+      "size": 1508547
+    },
+    {
+      "project_id": "P7dR8mSH",
+      "project_name": "[26.3] Fabric API 0.163.0+26.3",
+      "version_id": "bq3SsNGk",
+      "version_number": "0.163.0+26.3",
+      "filename": "fabric-api-0.163.0+26.3.jar",
+      "url": "https://cdn.modrinth.com/data/P7dR8mSH/versions/bq3SsNGk/fabric-api-0.163.0%2B26.3.jar",
+      "sha1": "65ada8c72b61ffb256e956baf53df28155daa479",
+      "sha512": "44fd8de10fa71ea39cf984d44d2ec4c8e9314f8af88ad95788d9a09ac7b02b5c2f796ae88f40e314bd27df677e66fed59d1a1b6784350b0cc1fd62efac9e08a3",
+      "size": 1774707
+    },
+    {
+      "project_id": "5ZwdcRci",
+      "project_name": "ImmediatelyFast 1.17.1",
+      "version_id": "3MP9UR23",
+      "version_number": "1.17.1+26.3-fabric",
+      "filename": "ImmediatelyFast-Fabric-1.17.1+26.3.jar",
+      "url": "https://cdn.modrinth.com/data/5ZwdcRci/versions/3MP9UR23/ImmediatelyFast-Fabric-1.17.1%2B26.3.jar",
+      "sha1": "f565bbeb201f2305e81761429d3f1f47e1c3a321",
+      "sha512": "8e139589fd995bce3d485a34d92a07243964212f7ed2e4fc2f6de5b9a74d0f59b03252e7ce40c64e006cf3e21bed5de27b830d33ef048b286e041f6178ad8428",
+      "size": 99586
+    },
+    {
+      "project_id": "YL57xq9U",
+      "project_name": "Iris 1.11.7 for Fabric 26.3",
+      "version_id": "vTN4NRGW",
+      "version_number": "1.11.7+26.3-fabric",
+      "filename": "iris-fabric-1.11.7+mc26.3.jar",
+      "url": "https://cdn.modrinth.com/data/YL57xq9U/versions/vTN4NRGW/iris-fabric-1.11.7%2Bmc26.3.jar",
+      "sha1": "fa03640ba1e4ef2f7ae3619c6373a06e46d0ba2c",
+      "sha512": "d8d3312f77fc52a48e4a6cd836fda33669bdebcb4de0b8c0d30adc808b287330a533e0baef355cc1ce6336a26851d9775369a802a4666b7b7a6266af20088f42",
+      "size": 2850938
+    },
+    {
+      "project_id": "mOgUt4GM",
+      "project_name": "v21.0.0 for 26.3",
+      "version_id": "kyy7dbrZ",
+      "version_number": "21.0.0",
+      "filename": "modmenu-21.0.0.jar",
+      "url": "https://cdn.modrinth.com/data/mOgUt4GM/versions/kyy7dbrZ/modmenu-21.0.0.jar",
+      "sha1": "66ec40f1cd0c037ddca2b5fc6b4b976d479c18e8",
+      "sha512": "588c0c557963f4778572ee81bfafc190b332c26d5926c5fe7e3e1614dcf8e14f58e3bc80a97694521dd05907e9753a7c8575048ea769e4dbf40a3db74a4e2606",
+      "size": 856779
+    },
+    {
+      "project_id": "aC3cM3Vq",
+      "project_name": "[26.3 Fabric] Mouse Tweaks 2.31",
+      "version_id": "LeMuMhLv",
+      "version_number": "26.3-2.31-fabric",
+      "filename": "MouseTweaks-fabric-mc26.3-2.31.jar",
+      "url": "https://cdn.modrinth.com/data/aC3cM3Vq/versions/LeMuMhLv/MouseTweaks-fabric-mc26.3-2.31.jar",
+      "sha1": "65c0f5588900e7ade476164ec4915bfab52c129a",
+      "sha512": "61c011308b5d1d0b2163473cbbc1ad0f1b3ac873b77e3e9ff67ccb437a946fbe5f34077281ebd2b91647324969d319f6499ac4b319cfcb9ea027bac47a52c081",
+      "size": 74569
+    },
+    {
+      "project_id": "eXts2L7r",
+      "project_name": "3.2.0+26.3",
+      "version_id": "lXytLqWj",
+      "version_number": "3.2.0+26.3",
+      "filename": "placeholder-api-3.2.0+26.3.jar",
+      "url": "https://cdn.modrinth.com/data/eXts2L7r/versions/lXytLqWj/placeholder-api-3.2.0%2B26.3.jar",
+      "sha1": "4c455faa6333dbaef72cedbb91fe4a2a03176741",
+      "sha512": "eb2bb31e51068aad2581b7864ea7b11b1209ba1c2b27551cd5837d9b312b818b73bb47c06374b46b99b73401c62c6b6c115f702c55aed6afd467ad8ad6448de4",
+      "size": 254959
+    },
+    {
+      "project_id": "2M01OLQq",
+      "project_name": "[Fabric 26.3] v5.4.2+26.3",
+      "version_id": "Cj9VEeGt",
+      "version_number": "5.4.2+26.3-fabric",
+      "filename": "shulkerboxtooltip-fabric-5.4.2+26.3.jar",
+      "url": "https://cdn.modrinth.com/data/2M01OLQq/versions/Cj9VEeGt/shulkerboxtooltip-fabric-5.4.2%2B26.3.jar",
+      "sha1": "2280c8ca8d77b4dcd5617daab3428b8115bef8d6",
+      "sha512": "737218bda3c35fe0753595e849850bb036eefd95181a542bdbdc8ab7c47795308be10b9aec45ca7880776c1711184536d0bf468fe76e94c674daac9ed73d8826",
+      "size": 422719
+    },
+    {
+      "project_id": "AANobbMI",
+      "project_name": "Sodium 0.9.2 for Fabric 26.3",
+      "version_id": "bAZQdGpg",
+      "version_number": "mc26.3-0.9.2-fabric",
+      "filename": "sodium-fabric-0.9.2+mc26.3.jar",
+      "url": "https://cdn.modrinth.com/data/AANobbMI/versions/bAZQdGpg/sodium-fabric-0.9.2%2Bmc26.3.jar",
+      "sha1": "9acfe851e36f4fb27d7c5baa224e8bd4e0334283",
+      "sha512": "f3f260f204b8ce5e8777c2c73f537956755ec61f3817b0b78b5e5568e8aa40f14891f146475075109747665c7c88a45ca0ca9a8df3c68d79c58ecdaa8d8c4b93",
+      "size": 1908068
+    },
+    {
+      "project_id": "9eGKb6K1",
+      "project_name": "Simple Voice Chat 2.6.24+26.3",
+      "version_id": "OLnMVWXy",
+      "version_number": "fabric-2.6.24+26.3",
+      "filename": "voicechat-fabric-2.6.24+26.3.jar",
+      "url": "https://cdn.modrinth.com/data/9eGKb6K1/versions/OLnMVWXy/voicechat-fabric-2.6.24%2B26.3.jar",
+      "sha1": "2ac4bb844e3b23b6e0a729edcf521ba1198ec5d2",
+      "sha512": "414eb51967305fe7740d34016bc8e3e4e2fa1590e1278ad06bcdfa0687f65007b825d345dc09f79a992704a51ec93baf01fe727e0bbc32fdf506828b5a65d85a",
+      "size": 5612855
+    },
+    {
+      "project_id": "1bokaNcj",
+      "project_name": "Xaero's Minimap 26.6.0",
+      "version_id": "B2aG1aya",
+      "version_number": "fabric-26.3-26.6.0",
+      "filename": "xaerominimap-fabric-26.3-26.6.0.jar",
+      "url": "https://cdn.modrinth.com/data/1bokaNcj/versions/B2aG1aya/xaerominimap-fabric-26.3-26.6.0.jar",
+      "sha1": "287f670348124261bef5c7833715c49960e74dee",
+      "sha512": "c704ed5154e66e891517b9b6778b3227a276823844ec70b348a32dc91d38e3500a6e74d8c69d7f9c68e3137b49511258b0b7d5e0b503391dd959f31e8c4e5112",
+      "size": 2230141
+    },
+    {
+      "project_id": "NcUtCpym",
+      "project_name": "Xaero's World Map 1.47.0",
+      "version_id": "nz9xjzWi",
+      "version_number": "fabric-26.3-1.47.0",
+      "filename": "xaeroworldmap-fabric-26.3-1.47.0.jar",
+      "url": "https://cdn.modrinth.com/data/NcUtCpym/versions/nz9xjzWi/xaeroworldmap-fabric-26.3-1.47.0.jar",
+      "sha1": "9ace0b064668929e3f1df6b7eb012ac713526e96",
+      "sha512": "e80c6bd6729c059c3e433e7e77714ed4c7f20e1a487f7449cf47282e9816b51523efe39183090b76a56834ffc67090317e70324730f311ba2e71fa24eec539c6",
+      "size": 1485579
+    }
+  ]
 }
