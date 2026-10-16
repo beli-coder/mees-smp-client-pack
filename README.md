@@ -45,9 +45,11 @@ update track. The Modrinth App may offer a newer version from the other variant
 when both share one project. Players should verify the edition name when
 updating. If isolated automatic updates become essential, two projects are needed.
 
-Use the repository secret `API_TOKEN_MODRINTH` with scopes
-`PROJECT_READ`, `VERSION_READ`, and `VERSION_CREATE`. The token's owner
-must also have access to `mees-modpack` (draft/private projects may 404).
+The publisher targets Modrinth project ID `UaH8nSXH` directly, without a
+project lookup or version-list lookup. The repository secret
+`API_TOKEN_MODRINTH` requires `VERSION_CREATE` plus account access to
+the target project. If a version number already exists, the API will reject
+a duplicate; create a new version instead of overwriting one.
 Open GitHub **Actions → Build Mees SMP Client Pack → Run workflow** on main,
 and select **Upload Technical edition** and **Upload Lite edition** to
 publish either or both. Automatic tag publishing remains opt-in behind
