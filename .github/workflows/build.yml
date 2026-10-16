@@ -114,6 +114,8 @@ jobs:
             dependencies: [],
             game_versions: [$mc],
             version_type: "release",
+            featured: false,
+            environment: "client_only",
             loaders: ["fabric"],
             file_parts: ["file"],
             primary_file: "file"
