@@ -85,7 +85,7 @@ jobs:
         run: |
           set -euo pipefail
           if [[ -z "${MODRINTH_TOKEN:-}" ]]; then
-            echo "::error::Missing API_TOKEN_MODRINTH GitHub secret. Add a Modrinth PAT with VERSION_CREATE permission in repository Actions secrets."
+            echo "::error::Missing API_TOKEN_MODRINTH GitHub secret. Add a Modrinth PAT with PROJECT_READ, VERSION_READ, VERSION_CREATE permissions in repository Actions secrets."
             exit 1
           fi
           API='https://api.modrinth.com/v2'
@@ -95,9 +95,32 @@ jobs:
           pack="dist/Mees-SMP-Client-${v}.mrpack"
           test -s "$pack"
           digest=$(sha512sum "$pack" | cut -d' ' -f1)
-          project=$(curl --fail-with-body -sS -H "Authorization: $MODRINTH_TOKEN" -H "User-Agent: $AGENT" "$API/project/mees-modpack")
+          # Draft projects are deliberately invisible to tokens lacking
+          # PROJECT_READ. VERSION_READ is also required to check draft versions.
+          api_get() {
+            local url="$1" label="$2" body status
+            body=$(mktemp)
+            status=$(curl -sS -o "$body" -w '%{http_code}' \
+              -H "Authorization: $MODRINTH_TOKEN" -H "User-Agent: $AGENT" \
+              "$url") || { rm -f "$body"; echo "::error::Network error while reading $label" >&2; return 1; }
+            if [[ "$status" != "200" ]]; then
+              echo "::error::$label lookup returned HTTP $status." >&2
+              if [[ "$status" == "404" ]]; then
+                echo "::error::If mees-modpack is a draft/private project, your API_TOKEN_MODRINTH token must have PROJECT_READ and VERSION_READ as well as VERSION_CREATE, and belong to an account with project access. Also verify the project slug." >&2
+              elif [[ "$status" == "401" || "$status" == "403" ]]; then
+                echo "::error::Check Modrinth token permissions and account membership." >&2
+              fi
+              jq -r '.description // .error // empty' < "$body" 2>/dev/null >&2 || true
+              rm -f "$body"
+              return 1
+            fi
+            cat "$body"
+            rm -f "$body"
+          }
+          project=$(api_get "$API/project/mees-modpack" "Modrinth project")
           project_id=$(jq -er 'select(.project_type == "modpack") | .id' <<< "$project")
-          versions=$(curl --fail-with-body -sS -H "Authorization: $MODRINTH_TOKEN" -H "User-Agent: $AGENT" "$API/project/$project_id/version")
+          echo "Verified accessible Modrinth modpack project: $project_id"
+          versions=$(api_get "$API/project/$project_id/version" "Modrinth version list")
           if jq -e --arg v "$v" '[.[] | select(.version_number == $v)] | length > 0' >/dev/null <<< "$versions"; then
             if jq -e --arg v "$v" --arg digest "$digest" '[.[] | select(.version_number == $v) | .files[]? | select(.hashes.sha512 == $digest)] | length > 0' >/dev/null <<< "$versions"; then
               echo "Modrinth version $v already contains this exact pack; no duplicate created."
