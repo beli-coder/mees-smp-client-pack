@@ -1,9 +1,9 @@
 {
   "schema": 1,
-  "manifest_sha256": "f1e88cf6e6cd50459c3bf0c1a963e59cc185909e3eb4a10648e39490053f0876",
+  "manifest_sha256": "7f5730d4030b47077785e4e112232327c4abf620fe320478848afc3eb5ecdec1",
   "name": "Mees SMP Lite",
-  "summary": "Optional lightweight QoL and performance client pack for Mees SMP: Sodium, Iris, voice chat, minimaps, simple inventory tools. Vanilla Java and Bedrock are welcome without mods.",
-  "version": "0.3.0",
+  "summary": "Mees SMP Lite 0.4.0: voted-in farming, wildlife, furniture, Traveler's Backpack and Origins: Legacy, plus essential performance, maps, proximity voice chat and optional distant terrain rendering. Java Fabric 26.3; content mods require matching server deployment.",
+  "version": "0.4.0",
   "minecraft": "26.3",
   "fabric_loader": "0.19.5",
   "mods": [
@@ -17,6 +17,17 @@
       "sha1": "3d19e40c5f97186857db98e622c01c2cd0030497",
       "sha512": "17d257af419b7530aa8617c2e8c0e4bbfabcf888f26655790e0188e7957e0bcd931f85f9a4c69fd27e889dee5082cf7b2b8741a14a6ed4425e9ef4bfe13a8b8c",
       "size": 180194
+    },
+    {
+      "project_id": "uCdwusMi",
+      "project_name": "3.3.4 - 26.3 neo/fabric",
+      "version_id": "TGgEbP9A",
+      "version_number": "3.3.4-26.3",
+      "filename": "DistantHorizons-3.3.4-26.3-fabric-neoforge.jar",
+      "url": "https://cdn.modrinth.com/data/uCdwusMi/versions/TGgEbP9A/DistantHorizons-3.3.4-26.3-fabric-neoforge.jar",
+      "sha1": "310c0363068dfae18e91f799ed671a591b6ad49a",
+      "sha512": "0b90b1b08d99974bfc3c8e86b2ceb252e2f91715ed66b925004c28335fb44e1bddbbb6b8043e4d4d53c87ed247789cd1788b1ba4e3f4394efe154e0c59cff236",
+      "size": 28476894
     },
     {
       "project_id": "NNAgCjsB",
@@ -39,6 +50,28 @@
       "sha1": "65ada8c72b61ffb256e956baf53df28155daa479",
       "sha512": "44fd8de10fa71ea39cf984d44d2ec4c8e9314f8af88ad95788d9a09ac7b02b5c2f796ae88f40e314bd27df677e66fed59d1a1b6784350b0cc1fd62efac9e08a3",
       "size": 1774707
+    },
+    {
+      "project_id": "7vxePowz",
+      "project_name": "Farmer's Delight Refabricated 3.6.28 - 26.3",
+      "version_id": "Zdr0cHIz",
+      "version_number": "26.3-3.6.28",
+      "filename": "FarmersDelight-26.3-3.6.28+refabricated.jar",
+      "url": "https://cdn.modrinth.com/data/7vxePowz/versions/Zdr0cHIz/FarmersDelight-26.3-3.6.28%2Brefabricated.jar",
+      "sha1": "65ac95d621d8b2015e42cc19359c0c997e6b0629",
+      "sha512": "337ee6b7ef6eb4bc7304531b77d91c942ba758adf47ae1feab5f68b46947821c932c4f9be662d18a218a9d6d4a8c41e31cb239d089dac094101b7ef674703f62",
+      "size": 3486887
+    },
+    {
+      "project_id": "ohNO6lps",
+      "project_name": "[FABRIC] [26.3.x] v26.3.1",
+      "version_id": "JpKvrr9J",
+      "version_number": "26.3.1",
+      "filename": "ForgeConfigAPIPort-v26.3.1-mc26.3.x-Fabric.jar",
+      "url": "https://cdn.modrinth.com/data/ohNO6lps/versions/JpKvrr9J/ForgeConfigAPIPort-v26.3.1-mc26.3.x-Fabric.jar",
+      "sha1": "a0d802d2cb010a5054c72f1ccf248433b6e0bafb",
+      "sha512": "b9339c21e14beec2eae0ca215317284bcaacef72e1d1dee8b3dfbe2de0eefaa758a172446df85419b6534557c479abe972d7d21f4ec194f2d436f9ed4329cb9f",
+      "size": 609574
     },
     {
       "project_id": "5ZwdcRci",
@@ -85,6 +118,28 @@
       "size": 74569
     },
     {
+      "project_id": "F8BQNPWX",
+      "project_name": "Naturalist 2.0.6 (Fabric 26.3)",
+      "version_id": "35ZJ5hlX",
+      "version_number": "2.0.6+26.3-fabric",
+      "filename": "naturalist-2.0.6-fabric-26.3.jar",
+      "url": "https://cdn.modrinth.com/data/F8BQNPWX/versions/35ZJ5hlX/naturalist-2.0.6-fabric-26.3.jar",
+      "sha1": "8c93c3d182f4321274408aa3e30a867872714499",
+      "sha512": "94f3cf987a4da458f1842b86b4cf09fc10a872fc3be06e8e04b87f4605d8d596883c36afb5144feb17b24bbe1c819f38674817a986e29e99051fd8138b14d81c",
+      "size": 11418742
+    },
+    {
+      "project_id": "mc1uvRn8",
+      "project_name": "Origins: Legacy v1.12.20+26.3",
+      "version_id": "7CqsxVdL",
+      "version_number": "1.12.20+26.3",
+      "filename": "Origins-Legacy-1.12.20+26.3.jar",
+      "url": "https://cdn.modrinth.com/data/mc1uvRn8/versions/7CqsxVdL/Origins-Legacy-1.12.20%2B26.3.jar",
+      "sha1": "8ebe4cbd03fbb968cc1a2721b0553ac5c6ed248d",
+      "sha512": "9d513c743b2aee589feabd0b03c2d93b0dec40b4ba3a5afceb76fbdba56cf4565f84fe4ca9eb3045833e6d01f1c2243da7bcdc16a410131b38f34543fda177ab",
+      "size": 2780244
+    },
+    {
       "project_id": "eXts2L7r",
       "project_name": "3.2.0+26.3",
       "version_id": "lXytLqWj",
@@ -107,6 +162,17 @@
       "size": 422719
     },
     {
+      "project_id": "pezpt98N",
+      "project_name": "Skniro's Furniture 1.6.1-26.3-Fabric",
+      "version_id": "oTircVlb",
+      "version_number": "1.6.1-26.3-Fabric",
+      "filename": "SkniroFurniture-1.6.1-26.3-Fabric.jar",
+      "url": "https://cdn.modrinth.com/data/pezpt98N/versions/oTircVlb/SkniroFurniture-1.6.1-26.3-Fabric.jar",
+      "sha1": "b89c26337f933a13ad050cf6fbd327d50808c2e3",
+      "sha512": "291c02eb7cbb5a9fa0152a99e2d89174311b091607ef1d01c4c4bc64e52cad8d37d1a088377514121e4bdf4ea75af7fdd3a988c97f8c8d36f7ce62e55412d8f6",
+      "size": 9931552
+    },
+    {
       "project_id": "AANobbMI",
       "project_name": "Sodium 0.9.2 for Fabric 26.3",
       "version_id": "bAZQdGpg",
@@ -116,6 +182,17 @@
       "sha1": "9acfe851e36f4fb27d7c5baa224e8bd4e0334283",
       "sha512": "f3f260f204b8ce5e8777c2c73f537956755ec61f3817b0b78b5e5568e8aa40f14891f146475075109747665c7c88a45ca0ca9a8df3c68d79c58ecdaa8d8c4b93",
       "size": 1908068
+    },
+    {
+      "project_id": "rlloIFEV",
+      "project_name": "travelersbackpack-fabric-26.3-11.4.1",
+      "version_id": "SmhjfeWr",
+      "version_number": "26.3-11.4.1",
+      "filename": "travelersbackpack-fabric-26.3-11.4.1.jar",
+      "url": "https://cdn.modrinth.com/data/rlloIFEV/versions/SmhjfeWr/travelersbackpack-fabric-26.3-11.4.1.jar",
+      "sha1": "47c1f44461eafff9a3d7998c79bcdfa612931584",
+      "sha512": "ccac2fe425d2de2bd2c3d15fc5c214962027863c16456bbb56f8a9f0eff93798ec543622732d45a2f269d96a28dee0ec5a13713e1df982cd54c4dd638a64dd12",
+      "size": 1511186
     },
     {
       "project_id": "9eGKb6K1",
