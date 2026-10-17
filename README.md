@@ -1,187 +1,61 @@
-# Mees SMP — Lite and Technical packs (v0.3.0)
+# Mees SMP — Lite & Technical (v0.4.0 candidate)
 
-**Minecraft Java 26.3 · Fabric Loader 0.19.5 · OPTIONAL client packs.**
+**Minecraft Java 26.3 · Fabric Loader 0.19.5**
 
-Both variants connect to `mees.clayton.engineer`. Vanilla Java and Bedrock remain supported on the unchanged server. The public map is https://map.clayton.engineer.
+This repository builds two Modrinth-ready client editions for the same Mees SMP server. **Version 0.4.0 is staged for testing, not deployed to the live server.** Existing 0.3.0 release users should remain on their current packs until the content upgrade is approved and deployed.
 
-## Choose an edition
+## Editions
 
-| | **Lite** | **Technical** |
+| | Lite | Technical |
 |---|---|---|
-| Intended for | People who want a familiar Minecraft experience | Builders, redstone engineers and people who love detailed HUDs |
-| Includes | Sodium, Iris, rendering fixes, Mouse Tweaks, AppleSkin, shulker previews, Xaero maps, voice chat, Mod Menu | Everything in Lite **plus** Distant Horizons, Litematica, MiniHUD, advanced inventory sorting, JEI, Jade, extra visual/HUD mods |
-| Installation required to join? | **No** | **No** |
-| Server version | Java 26.3 / Fabric 0.19.5 | Java 26.3 / Fabric 0.19.5 |
+| Audience | Casual players who want fewer extras | Builders, redstone engineers, technical players |
+| Shared gameplay | Farmer's Delight Refabricated, Naturalist, Skniro's Furniture, Traveler's Backpack, Origins: Legacy | The same five gameplay mods |
+| Graphics and navigation | Sodium, Iris, Distant Horizons (configurable), performance fixes, Xaero maps | Same, plus Continuity, dynamic lights, animations and visual polish |
+| Multiplayer | Simple Voice Chat | Simple Voice Chat |
+| Inventory/UI | Mouse Tweaks, AppleSkin, Shulker Box Tooltip, Mod Menu | Same, plus Inventory Profiles Next, Jade, BetterF3 and other HUD tools |
+| Building | Basic vanilla building | Litematica, MiniHUD, MaLiLib, JEI |
 
-There are two independent manifests with pinned lockfiles:
-- Technical: `manifest.json` + `pack.lock.json`.
-- Lite: `profiles/lite/manifest.json` + `profiles/lite/pack.lock.json`.
+**Origins: Legacy** is an unofficial compatible port. The original Origins project does not list Minecraft 26.3 support.
+
+**Distant Horizons** is now in both editions, but is adjustable/disableable for low-performance systems. It was already included in Technical.
+
+## Critical server migration requirement
+
+The five gameplay mods change the Minecraft content registry and require matching server-side mods. The current Hagrid server remains untouched. Do **not** publish these builds as replacements for the optional 0.3.0 packs until a staging world has passed compatibility tests and a coordinated upgrade is announced.
+
+Moving to a mandatory gameplay modpack will likely exclude vanilla Java and Bedrock clients unless separate server-side compatibility solutions are tested. Back up the world first, test existing saves and client connections, confirm the server's Fabric loader and all dependencies, and plan a maintenance window. Pregenerated chunks may not get new world-generation content.
+
+The staged manifests are:
+- Technical: `manifest.json` and `pack.lock.json`.
+- Lite: `profiles/lite/manifest.json` and `profiles/lite/pack.lock.json`.
+
+The GitHub workflow resolves and commits lockfiles when manifests change. Release-tag publication remains opt-in through `MODRINTH_AUTO_PUBLISH=true` or a manually requested workflow dispatch; do not turn on Modrinth publishing before testing.
+
+## Building locally
 
 ```bash
+python3 -m unittest discover -s tests -v
 python3 scripts/modpack.py lock --profile technical
 python3 scripts/modpack.py lock --profile lite
 python3 scripts/modpack.py build --profile technical
 python3 scripts/modpack.py build --profile lite
 ```
 
-Output: `dist/Mees-SMP-Client-0.3.0.mrpack` (Technical) and `dist/Mees-SMP-Lite-0.3.0.mrpack` (Lite). Tests: `python3 -m unittest discover -s tests -v`.
+Expected outputs:
+- `dist/Mees-SMP-Client-0.4.0.mrpack` (Technical).
+- `dist/Mees-SMP-Lite-0.4.0.mrpack` (Lite).
 
-## Modrinth publishing — one project, two editions
+## Modrinth project
 
-Both editions are published as **different versions on the SAME Modrinth project**:
-[mees-modpack](https://modrinth.com/project/mees-modpack).
+Both editions are version entries under the same [Mees SMP Modrinth project](https://modrinth.com/project/mees-modpack):
+`0.4.0-lite` and `0.4.0-technical`. They are distinct labeled releases, not independent automatic-update channels.
 
-- **Lite:** `0.3.0-lite` — `Mees SMP Lite 0.3.0` (13 resolved mods)
-- **Technical:** `0.3.0-technical` — `Mees SMP Technical 0.3.0` (38 resolved mods)
+The repository secret `API_TOKEN_MODRINTH` is used only during Modrinth uploads. Do not expose it in commits, documentation or chats.
 
-Players select the edition under **Versions** on the project page.
-For future releases the version numbers are always `<manifest-version>-lite` and
-`<manifest-version>-technical` (for example `0.3.1-lite`).
-GitHub maintains independent pinned lockfiles and outputs.
+**Extended description ready to paste:** [docs/modrinth-description.md](docs/modrinth-description.md).
 
-**Important:** These are two *variants*, not isolated automatic-update branches.
-Modrinth's standard API has release/beta/alpha channels but no Lite/Technical
-update track. The Modrinth App may offer a newer version from the other variant
-when both share one project. Players should verify the edition name when
-updating. If isolated automatic updates become essential, two projects are needed.
+## Server and community
 
-The publisher targets Modrinth project ID `UaH8nSXH` directly, without a
-project lookup or version-list lookup. The repository secret
-`API_TOKEN_MODRINTH` requires `VERSION_CREATE` plus account access to
-the target project. If a version number already exists, the API will reject
-a duplicate; create a new version instead of overwriting one.
-Open GitHub **Actions → Build Mees SMP Client Pack → Run workflow** on main,
-and select **Upload Technical edition** and **Upload Lite edition** to
-publish either or both. Automatic tag publishing remains opt-in behind
-the repository variable `MODRINTH_AUTO_PUBLISH=true`.
-
-
----
-# Legacy Technical Edition Details
-
-**Minecraft Java 26.3 · Fabric Loader 0.19.5 · optional, client-side**
-
-Server: `mees.clayton.engineer` (Java 25565, Bedrock 25566). Voice: UDP 25567. Map: https://map.clayton.engineer
-
-This is a **30+ mod deluxe client profile**, built for powerful laptops and desktops. It bundles a renderer/shader stack, far-distance world rendering, navigational tools, inventory helpers, building tools, HUD improvements, and visual polish. It is still **optional**: vanilla Java and Bedrock clients can continue joining Mees SMP. Nothing in this project copies mods to the Minecraft server or changes gameplay content.
-
-## Included mods (31 explicitly requested, plus auto-resolved dependencies)
-
-The authoritative list is in `manifest.json`. `lock` will add dependency libraries as needed. Exact JAR version IDs are resolved and pinned when you execute `lock` with internet access.
-
-| Category | Mods |
-|---|---|
-| Graphics and performance | **Sodium**, Iris Shaders, Distant Horizons, ImmediatelyFast, Entity Culling, Reese's Sodium Options, Continuity, LambDynamicLights, Visuality, Not Enough Animations |
-| Multiplayer and navigation | Xaero's Minimap, Xaero's World Map, Simple Voice Chat |
-| Inventory and item information | **Mouse Tweaks**, Inventory Profiles Next, Shulker Box Tooltip, AppleSkin, Jade, Tooltip Scroll, Held Item Info |
-| Recipes | Just Enough Items (JEI) — **do not also install REI/EMI** in the same instance |
-| HUD and controls | Mod Menu, BetterF3, Zoomify, Chat Heads, Better Mount HUD, Advancement Plaques |
-| Technical building | Litematica, MiniHUD, MaLiLib |
-| Required APIs | Fabric API and additional libraries resolved via Modrinth |
-
-### Caveats worth knowing
-
-- **Shaders are supported but not bundled.** Install a compatible shader pack separately in the launcher. Iris + DH integration depends on versions and shader compatibility; test both together.
-- Litematica schematics may not draw correctly while some Iris shaders are enabled. Toggle shaders off temporarily when building.
-- Mouse Tweaks / Inventory Profiles Next both modify mouse/inventory behavior; review keybinds if they overlap. They are intentionally both included, as requested.
-- Litematica, MiniHUD and recipe viewers are powerful technical tools. Respect the server's rules on duplication, auto-placement, exploits and unfair advantages. **No printer/auto-builder** is bundled.
-- **Xaero Fair Play** restrictions remain server-controlled where supported. This pack does not grant permission to use cave radar or other prohibited functions.
-- Jade works client-only, but advanced details like some container contents require Jade installed on the server, which isn't part of this client-pack deployment.
-- An inventory profile, mod menu or shader does **not** need corresponding mods on Hagrid. Some mods are marked `client and server` on Modrinth but can operate client-only; test the final client pack before publishing.
-- This project does not distribute copyrighted JARs, credentials, Java installers, or shaders. The `.mrpack` references original publisher downloads with hashes.
-
-## A. Building the pack
-
-On **Hagrid** or a desktop with Python 3.11+ and internet, extract the archive and run:
-
-```bash
-cd ~/mees-pack-pipeline
-python3 -m unittest discover -s tests -v
-python3 scripts/modpack.py lock
-python3 scripts/modpack.py build
-ls -lh dist/Mees-SMP-Client-0.2.2.mrpack
-```
-
-- `lock` uses the Modrinth API to choose Fabric **26.3** versions, resolves required dependencies recursively and stores pinned version IDs, URLs and SHA hashes in `pack.lock.json`.
-- It **fails closed** on incompatible versions, missing files, unavailable project releases, or conflicting hard-pinned dependencies. Read the error and adjust the manifest deliberately. It will not silently pick unsupported game versions or install JARs into Hagrid's server.
-- Dependencies with specific pinned version IDs are resolved before their root-project aliases; the resolver reuses already-selected versions and detects disagreements.
-- `build` uses only the exact lockfile, offline. It rejects an outdated manifest hash. The resulting `.mrpack` has only `modrinth.index.json` and references the publisher files.
-- Neither the compatibility of all combinations nor a real launch has been independently verified in this environment. **The pack is not release-ready until `lock`, import and launch tests pass on a real 26.3 Fabric client.**
-
-### Updating an older copy of this pipeline
-
-If you previously copied `mees-smp-modpack-pipeline.zip` to `~/mees-pack-pipeline` on Hagrid, overwrite only the pipeline's tracked files by unzipping this **new** zip again into the same folder. Your old `pack.lock.json` will be regenerated by `lock`. Test a clean Modrinth App instance to avoid carrying over old mods from another profile.
-
-### Install instructions for players
-
-1. Install the Modrinth App, sign in using your Minecraft account.
-2. **Import** `Mees-SMP-Client-0.2.2.mrpack`. The launcher fetches the mods and dependencies from approved file URLs.
-3. Start the imported profile (Minecraft 26.3 / Fabric 0.19.5), configure keybinds, optionally add a shader pack, and join `mees.clayton.engineer`.
-4. Press `V` in-game to configure voice chat. If voice won't connect, check the client mod and UDP 25567.
-5. Vanilla Java/Bedrock still work without this pack. Bedrock uses UDP 25566.
-
-### Choosing optional mod features
-
-All listed mods are installed by default, but players can disable individual mods in their profile if they dislike the UI or want to isolate a compatibility issue. Don't remove required library mods while dependents are enabled. If shaders and schematic rendering conflict, disable shaders rather than deleting Iris.
-
-## B. Xaero Fair Play on Hagrid (separate server-only datapack)
-
-The installer in `scripts/install-xaero-fairplay.sh` is unchanged from the previous kit and should **not** be rerun if the datapack is already installed.
-
-If not installed yet:
-1. `/jeb now BeforeXaeroFairPlay` as an operator; verify the backup.
-2. Run `bash scripts/install-xaero-fairplay.sh` on Hagrid.
-3. In-game use `/reload`, `/datapack list`, `/function xaero:autorun/set/fairxaero`, and `/function xaero:fairxaero` as documented by the datapack version. Verify client behavior after rejoining.
-
-It is a recognized client-side policy, **not** tamper-resistant anticheat. It doesn't prevent use of other modded clients.
-
-## C. Publishing the client pack via GitHub
-
-The included `.github/workflows/build.yml` verifies an already-committed `pack.lock.json`, creates `.mrpack`, uploads a build artifact and attaches it to GitHub Releases when a matching `v*` tag is pushed.
-
-Suggested flow:
-
-```bash
-python3 scripts/modpack.py lock
-python3 scripts/modpack.py build
-# Import into an empty client instance and confirm it launches and joins Mees SMP.
-git add manifest.json pack.lock.json scripts/modpack.py README.md tests/ .github/
-git commit -m 'Release deluxe Mees SMP client pack 0.2.2'
-git tag v0.2.2
-git push origin main v0.2.2
-```
-
-**Do not push a tag until the full client pack has been tested.** The main-branch workflow refreshes the lockfile only if the manifest changes and commits it through the GitHub Actions bot. Tagged releases do not refresh it and only build from the pinned lock.\n\nDirect GitHub `.mrpack` distribution requires users to re-import updates; a real Modrinth modpack project enables launcher-managed updates. Never include Hagrid's Cloudflare tunnel token, server access phrase, or private configuration in this repository.
-
-## D. Separate proposal for a mandatory gameplay pack
-
-`docs/mandatory-pack-proposal.md` lists Farmer's Delight, Naturalist, furniture, backpacks and Origins for a future vote. **None are in the optional deluxe pack**, because those mods may require both client and server and could exclude vanilla/Bedrock users.
-
-## E. Validation before launch
-
-- `python3 -m unittest discover -s tests -v` passes.
-- `python3 scripts/modpack.py lock` finishes with a non-empty `pack.lock.json` and no incompatible dependencies.
-- `python3 scripts/modpack.py build` creates `.mrpack`; the Modrinth App can import it successfully.
-- Open a brand-new Fabric 26.3 instance, load the included mods and connect to `mees.clayton.engineer`.
-- Test Sodium + Iris + DH together, set up voice chat, verify Xaero Fair Play applies, and exercise Mouse Tweaks / Inventory Profiles Next.
-- Check Litematica, MiniHUD, JEI and Shulker Box Tooltip to catch graphics/keybind conflicts.
-- Confirm vanilla Java and Bedrock can still join the unchanged server.
-
-Project sources and documentation: [Modrinth `.mrpack` format](https://support.modrinth.com/en/articles/8802351-modrinth-modpack-format-mrpack), [pack sharing](https://support.modrinth.com/en/articles/8797522-sharing-modpacks), [Xaero server datapack](https://modrinth.com/datapack/xaeros-map-server-utils).
-
-## F. Publishing directly to the Modrinth project
-
-The pack is published at [Mees Modpack](https://modrinth.com/project/mees-modpack). Install or update it through the Modrinth App after the Modrinth project and its version have been approved.
-
-The GitHub Actions workflow can upload pinned .mrpack builds directly to this project. Create a **Modrinth personal access token** with **Read projects (PROJECT_READ)**, **Read versions (VERSION_READ)**, and **Create versions (VERSION_CREATE)** scopes and membership permission to publish versions of `mees-modpack`. These read scopes matter if the project is still a private/draft project. Save the token in this GitHub repository under **Settings → Secrets and variables → Actions → New repository secret**, name `API_TOKEN_MODRINTH`. Never commit the token or paste it in chat.
-
-To publish the existing 0.2.2 version (whose tag predates this workflow change):
-1. Open **Actions → Build Mees SMP Client Pack → Run workflow** in GitHub.
-2. Choose branch `main` and enable **Publish the tested pack to Modrinth**.
-3. Run the workflow and confirm the Modrinth publication step succeeds.
-4. Verify the uploaded version on the Modrinth project and check whether the project is awaiting moderation.
-
-For **future** versions, update `manifest.json` to the new version, let the main-branch workflow regenerate and commit `pack.lock.json`, test the new .mrpack, and push a new matching `vX.Y.Z` tag. The tagged workflow builds the exact lockfile, publishes to Modrinth, and creates the GitHub Release.
-
-Publishing is idempotent: the workflow reuses a version when its SHA-512 file hash matches, and deliberately fails if that version number exists with different content. Bump the version rather than overwriting an existing release.
-
+- Java server: `mees.clayton.engineer` (current configuration still unchanged).
+- World map: https://map.clayton.engineer
+- Discord: https://discord.gg/m8gB5gX9HP

@@ -1,7 +1,7 @@
 {
   "name": "Mees SMP Lite",
-  "summary": "Optional lightweight QoL and performance client pack for Mees SMP: Sodium, Iris, voice chat, minimaps, simple inventory tools. Vanilla Java and Bedrock are welcome without mods.",
-  "version": "0.3.0",
+  "summary": "Mees SMP Lite 0.4.0: voted-in farming, wildlife, furniture, Traveler's Backpack and Origins: Legacy, plus essential performance, maps, proximity voice chat and optional distant terrain rendering. Java Fabric 26.3; content mods require matching server deployment.",
+  "version": "0.4.0",
   "minecraft": "26.3",
   "fabric_loader": "0.19.5",
   "mods": [
@@ -53,6 +53,30 @@
     {
       "project": "shulkerboxtooltip",
       "description": "Preview shulker box contents"
+    },
+    {
+      "project": "farmers-delight-refabricated",
+      "description": "New crops, meals, cooking and food preparation; required on server and client"
+    },
+    {
+      "project": "naturalist",
+      "description": "New wildlife and animal behaviors; required on server and client"
+    },
+    {
+      "project": "skniros-furniture",
+      "description": "Vanilla-inspired craftable furniture and decor; required on server and client"
+    },
+    {
+      "project": "travelersbackpack",
+      "description": "Craftable wearable backpacks and portable storage; required on server and client"
+    },
+    {
+      "project": "origins-legacy",
+      "description": "Fabric 26.3 compatible Origins port with origin powers and drawbacks; required on server and client"
+    },
+    {
+      "project": "distanthorizons",
+      "description": "Configurable distant terrain LOD; client-side; disable for lower-spec PCs"
     }
   ]
 }

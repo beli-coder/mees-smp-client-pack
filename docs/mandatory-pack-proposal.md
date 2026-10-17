@@ -7,8 +7,8 @@ This is a **proposal only**, separate from the optional client pack. It must not
 | Farmer's Delight Refabricated | Food, crops, cooking, player cafés | Vote on client requirement; evaluate Polymer server-only variant separately |
 | Naturalist | More animals and wildlife | Vote; test spawn behavior and server performance |
 | Skniro's Furniture | More decoration and player-built interiors | Vote; test client + server dependency and Bedrock incompatibility |
-| Packed Up (Backpacks) | Portable inventory for mining and travel | Vote; balancing, dupe testing and recipes |
-| Origins: Legacy | Player powers and limitations | **Separate vote**; affects progression and PvP balance |
+| Traveler's Backpack | Portable inventory for mining and travel | Voted-in replacement for Packed Up; balancing, dupe testing and recipes |
+| Origins: Legacy | Player powers and limitations | Community poll supported this addition; still requires progression and PvP balancing |
 
 Questions before approving a mandatory pack:
 

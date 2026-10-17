@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.4.0 (staging) — Shared gameplay expansion
+- Voted content additions for both editions: Farmer's Delight Refabricated, Naturalist, Skniro's Furniture, Traveler's Backpack (replacing Packed Up), and Origins: Legacy for Fabric 26.3.
+- Added Distant Horizons to Lite (already present in Technical).
+- The server is NOT upgraded; validation and a coordinated mandatory-mod rollout are required before release.
+
 ## 0.3.0 — Lite + Technical editions
 - Added Lite profile with 12 essential mod projects, including Sodium and Iris.
 - Preserved full 31-project pack as Technical.
