@@ -25,13 +25,13 @@ PROFILES = {
         "manifest": "manifest.json",
         "prefix": "Mees-SMP-Client",
         "label": "Mees SMP Technical",
-        "details": "Enhanced graphics, Distant Horizons, mapping, inventory QoL, proximity voice chat, Litematica, MiniHUD, JEI, and technical building tools.",
+        "details": "v0.4 gameplay update: Farmer's Delight Refabricated (cooking and farming), Naturalist (wildlife), Skniro's Furniture, Traveler's Backpack (replaces Packed Up), and Origins: Legacy (powers and drawbacks). Technical edition includes everything in Lite plus Litematica, MiniHUD, JEI, advanced HUDs, graphics, inventory tools, and technical building utilities. Requires Minecraft 26.3 with Fabric Loader 0.19.5 and the matching Mees SMP server.",
     },
     "lite": {
         "manifest": "profiles/lite/manifest.json",
         "prefix": "Mees-SMP-Lite",
         "label": "Mees SMP Lite",
-        "details": "Performance optimizations, Sodium, Iris shader support, Xaero maps, proximity voice chat, and everyday quality-of-life improvements.",
+        "details": "v0.4 gameplay update: Farmer's Delight Refabricated (cooking and farming), Naturalist (wildlife), Skniro's Furniture, Traveler's Backpack (replaces Packed Up), and Origins: Legacy (powers and drawbacks). Lite adds Distant Horizons alongside Sodium, Iris, Xaero maps, proximity voice chat, and everyday quality-of-life improvements. Requires Minecraft 26.3 with Fabric Loader 0.19.5 and the matching Mees SMP server.",
     },
 }
 
